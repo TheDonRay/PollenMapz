@@ -1,0 +1,29 @@
+{
+  "name": "pollenmapz",
+  "version": "1.0.0",
+  "description": "🌿 PollenMapz - Your Personal tool to help you enjoy the beauty of nature but also avoid its allergies.",
+  "main": "app.js",
+  "scripts": { 
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheDonRay/PollenMapz.git"
+  },
+  "keywords": [],
+  "author": "Rayat Chowdhury",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/TheDonRay/PollenMapz/issues"
+  },
+  "homepage": "https://github.com/TheDonRay/PollenMapz#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}

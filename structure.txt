@@ -1,0 +1,16 @@
+Structure of Code: 
+
+
+Backend - Tech Stack / Plan 
+
+    - Express / Node js  
+    - How many routes do i want ? 
+
+
+FrontEnd - Tech Stack / Plan 
+
+    - React 
+
+APIs Ill be using to incorporate google maps and 3D search feature: 
+
+    - undecided

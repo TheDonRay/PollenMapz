@@ -1,0 +1,16 @@
+.center-container {
+  display: flex;
+  flex-direction: column;       /* Stack elements vertically */
+  justify-content: center;      /* Center vertically */
+  align-items: center;          /* Center horizontally */
+  height: 20vh;                /* Full screen height */
+  width: 100vw;                 /* Full screen width */
+  text-align: center;
+}
+
+.searchbar {
+  margin-top: 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}

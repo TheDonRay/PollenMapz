@@ -5,13 +5,21 @@ const express = require('express');
 const app = express(); 
 require('dotenv').config(); 
 
-
+// importing statements. 
 const {PORT, NODE_ENV} = require('./config/env.js'); 
+const Homepage = require('./routes/home.js'); 
+
+
+//Mounting a Router (or Router Middleware) in Express we do this in order to get access to a specific route in the project. like homepage or a certain route the user can visit.  
+// use the key word use. 
+app.use('/', Homepage);
+
 
 app.get('/', (req, res) => { 
-
     res.send('Backend is Successfully Running'); 
-}); 
+});  
+
+
 
 
 app.listen(PORT, () => { 

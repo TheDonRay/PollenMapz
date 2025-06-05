@@ -10,5 +10,6 @@ dotenv.config({ //path.resolve() builds an absolute path to your .env file.
 
 module.exports = { 
     PORT: process.env.PORT, 
-    NODE_ENV: process.env.NODE_ENV, 
+    NODE_ENV: process.env.NODE_ENV,  
+    DB_URI: process.env.DB_URI
 }; 

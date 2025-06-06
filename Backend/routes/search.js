@@ -2,14 +2,14 @@ const express = require("express");
 const searchLocation = express.Router(); 
 
 
-searchLocation.get('/locationHomePage', (req, res) => { 
+searchLocation.get('/', (req, res) => {  // represents the home page of the location part. 
 
     //const { address } = req.query; 
 
-    res.send("Welcome to location page"); 
+    res.send("Welcome to Location Home page"); 
 });  
 
-searchLocation.get('/location', (req, res) => { 
+searchLocation.get('/search', (req, res) => {  // represents the search page for when you are searching for location. 
 
     res.send("Getting location of where you are"); 
 }); 

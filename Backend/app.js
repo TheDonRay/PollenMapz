@@ -28,7 +28,7 @@ app.get('/', (req, res) => {
 app.listen(PORT, async() => { 
     console.log(`Server is sucessfully running in ${NODE_ENV} mode on port http://localhost:${PORT}`);  
 
-    await connection(); 
+    await connection(); // call this to wait for the db connection to come. 
 }); 
 
 module.exports = app; 

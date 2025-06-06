@@ -1,6 +1,6 @@
 // install mongo js on this    
 const mongoose = require('mongoose'); 
-const {DB_URI, NODE_ENV} = require('../config/env.js'); 
+const {DB_URI, NODE_ENV} = require('../config/env.js'); // where i ran into a issue forgot the two dots vs one dot can create a big issue
 
 // need to check if DB is successfuly connected to our backend server .  
 if(!DB_URI) { 
@@ -20,7 +20,10 @@ async function ConnectionDatabase() {
         
         console.error('Error connecting to Database', error); 
         process.exit(1); 
-    }
+    } 
+
+    // try that new promise approach to see if you can do that and practice it see if it will work from what you learned to test yourself. 
+    // return new Promise((resolve, reject) => {async code} ); general formula. 
 }  
 
 module.exports = ConnectionDatabase; 

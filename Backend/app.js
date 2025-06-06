@@ -9,11 +9,12 @@ require('dotenv').config(); // need this for the env setup.
 const {PORT, NODE_ENV} = require('./config/env.js'); 
 const Homepage = require('./routes/home.js'); 
 const connection = require('./database/mongo.js'); 
+const locationSearch = require("./routes/search.js") 
 
 //Mounting a Router (or Router Middleware) in Express we do this in order to get access to a specific route in the project. like homepage or a certain route the user can visit.  
 // use the key word use. 
-app.use('/ap1/v1/home', Homepage);
-
+app.use('/api/v1/home', Homepage); // this is mounting a router and its more in depth to it the idea is that 
+app.use('/api/v1/', locationSearch); 
 
 
 

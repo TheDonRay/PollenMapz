@@ -3,10 +3,9 @@ const express = require('express');
 const homePage = express.Router();  
 
 
-homePage.post('/home', (req, res) => {
+homePage.get('/', (req, res) => {
     
     res.send("Welcome to PollenMapz")
 });
-
 
 module.exports = homePage; 

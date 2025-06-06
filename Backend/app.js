@@ -3,16 +3,18 @@
 
 const express = require('express'); 
 const app = express(); 
-require('dotenv').config(); 
+require('dotenv').config(); // need this for the env setup. 
 
 // importing statements. 
 const {PORT, NODE_ENV} = require('./config/env.js'); 
 const Homepage = require('./routes/home.js'); 
-
+const connection = require('./database/mongo.js'); 
 
 //Mounting a Router (or Router Middleware) in Express we do this in order to get access to a specific route in the project. like homepage or a certain route the user can visit.  
 // use the key word use. 
-app.use('/', Homepage);
+app.use('/ap1/v1/home', Homepage);
+
+
 
 
 app.get('/', (req, res) => { 
@@ -22,8 +24,10 @@ app.get('/', (req, res) => {
 
 
 
-app.listen(PORT, () => { 
-    console.log(`Server is sucessfully running in ${NODE_ENV} mode on port http://localhost:${PORT}`); 
+app.listen(PORT, async() => { 
+    console.log(`Server is sucessfully running in ${NODE_ENV} mode on port http://localhost:${PORT}`);  
+
+    await connection(); 
 }); 
 
 module.exports = app; 

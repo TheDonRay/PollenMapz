@@ -3,14 +3,9 @@ const express = require('express');
 const homePage = express.Router();  
 
 
-homePage.get('/home', (req, res) => {
-    const userName = req.query.user;  // Access the query parameter `?user=ray`
+homePage.post('/home', (req, res) => {
     
-    if (userName) {
-        res.send(`Welcome, ${userName}, to Pollen Mapz!`);
-    } else {
-        res.send("Welcome to Pollen Mapz! Please provide a name.");
-    }
+    res.send("Welcome to PollenMapz")
 });
 
 

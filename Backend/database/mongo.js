@@ -10,21 +10,36 @@ if(!DB_URI) {
 
 async function ConnectionDatabase() { 
 
-    try {  
-    
-        await mongoose.connect(DB_URI);  
-        console.log(`MongoDB connected in ${NODE_ENV} mode`); 
-
+    try { 
+        await mongoose.connect(DB_URI); 
+        console.log(`MongoDB connected in ${NODE_ENV} mode`)
     } 
-    catch(error) {  
-        
-        console.error('Error connecting to Database', error); 
+    catch(error){ 
+        console.error('Error connecting to Database', error);  
         process.exit(1); 
-    } 
+    }
+}
+
+// function ConnectionDatabase() { 
+
+//     return new Promise(async (resolve, reject) => { 
+//             try {  
+//                 await mongoose.connect(DB_URI);  
+//                 resolve(`MongoDB connected in ${NODE_ENV} mode`); 
+//             } 
+//             catch(error) {  
+//                 reject('Error connecting to Database', error); 
+//                 process.exit(1); 
+//             } 
+//         });  
+
+//}
+// go ahead an invoke the function with the then cases and catch cases also known as methodchaining. 
+
 
     // try that new promise approach to see if you can do that and practice it see if it will work from what you learned to test yourself. 
     // return new Promise((resolve, reject) => {async code} ); general formula. 
-}  
+
 
 module.exports = ConnectionDatabase; 
 

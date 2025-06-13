@@ -6,6 +6,10 @@ const homePage = express.Router();
 homePage.get('/', (req, res) => {
     
     res.send("Welcome to PollenMapz")
-});
+});  
+
+
+
+
 
 module.exports = homePage; 

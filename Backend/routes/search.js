@@ -1,6 +1,7 @@
 const express = require("express"); 
 const searchLocation = express.Router(); 
 
+// to get the user location 
 
 searchLocation.get('/locationHomePage', (req, res) => {  // represents the home page of the location part. 
 

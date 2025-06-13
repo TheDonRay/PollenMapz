@@ -18,7 +18,7 @@ async function ConnectionDatabase() {
         console.error('Error connecting to Database', error);  
         process.exit(1); 
     }
-}
+};
 
 // function ConnectionDatabase() { 
 

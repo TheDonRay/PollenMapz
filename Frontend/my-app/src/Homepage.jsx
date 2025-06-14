@@ -1,6 +1,6 @@
-import React from "react"; 
+import React, { useEffect, useRef, useState } from "react"; 
 import "./styling/Homepage.css";  
-import { useState } from 'react'; // 
+
 
 // to access backend data use fetech or axios to make HTTP requests.  
 //import axios from 'axios'; 
@@ -39,18 +39,44 @@ import { useState } from 'react'; //
 //     // notes in my backend dev notebook. 
 // }
 
+/* ======================================================================================================================================================== */ 
 
 function Homepage(){ 
 
-  // create a button function on another feature where upon clicking it user sees what PollenMapz is about 
-  
-  return(
-    <div className = "homepage">
-      <h1>PollenMapz</h1>
-    </div>
-  ); 
-}
+  const vantaRef = useRef(null);  // create a ref to the DOM element
+  const [vantaEffect, setVantaEffect] = useState(null);
 
+  useEffect(() => {
+    if (!vantaEffect && window.VANTA && window.VANTA.CLOUDS) {
+      const effect = window.VANTA.CLOUDS({
+        el: vantaRef.current,
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200.00,
+        minWidth: 200.00,
+        skyColor: 0xd78268,
+        sunColor: 0xffd618,
+        sunlightColor: 0x3c30ff,
+        speed: 2.10,
+      });
+      setVantaEffect(effect);
+    }
+
+    return () => {
+      if (vantaEffect) vantaEffect.destroy();
+    };
+  }, [vantaEffect]);
+
+  return (
+    <div ref={vantaRef} style={{ height: '100vh', width: '100vw' }}>
+      <div className="homepage" style={{ textAlign: 'center', paddingTop: '30vh', color: 'white', fontWeight: 'bold' }}>
+        <h1>PollenMapz</h1>
+        <p>Breathe easy—check real-time pollen levels in immersive 3D!</p>
+      </div>
+    </div>
+  );
+}
 
 export default Homepage;  
 

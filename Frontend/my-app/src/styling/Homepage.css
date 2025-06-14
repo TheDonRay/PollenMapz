@@ -5,6 +5,7 @@
   align-items: center;          /* Center horizontally */
   height: 20vh;                /* Full screen height */
   width: 100vw;                 /* Full screen width */
-  text-align: center;
+  text-align: center; 
+  color: black; 
 }
 

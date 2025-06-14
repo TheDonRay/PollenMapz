@@ -15,7 +15,8 @@ app.use(cors()); // use CORS middleware  | had to install it thats why it wasn't
 const {PORT, NODE_ENV} = require('./config/env.js'); 
 const Homepage = require('./routes/home.js'); 
 const connectiondb = require('./database/mongo.js'); // data base stuff 
-const locationSearch = require("./routes/search.js") 
+const locationSearch = require("./routes/search.js");   
+const aboutpage = require('./routes/about.js'); 
 
 /*===========================================================================================================================================================================================*/  
 
@@ -24,7 +25,7 @@ const locationSearch = require("./routes/search.js")
 
 app.use('/api/v1/home', Homepage); // this is mounting a router and its more in depth to it the idea is that 
 app.use('/api/v1/', locationSearch); // mounting a router 
-
+app.use('/api/v1/aboutPage', aboutpage); 
 // key to understand that when mounting the routes we essentially need to call that same route in our fetch call in the frontend 
 
 

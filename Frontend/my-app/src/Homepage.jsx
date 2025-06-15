@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from "react"; 
-import "./styling/Homepage.css";  
+import "./styling/Homepage.css";   
+
+// using the useNavigate Hook to dynamically switch between componenets. 
 
 
 // to access backend data use fetech or axios to make HTTP requests.  
@@ -58,7 +60,7 @@ function Homepage(){
         skyColor: 0xd78268,
         sunColor: 0xffd618,
         sunlightColor: 0x3c30ff,
-        speed: 2.10,
+        speed: 2.5,
       });
       setVantaEffect(effect);
     }
@@ -68,11 +70,12 @@ function Homepage(){
     };
   }, [vantaEffect]);
 
+  // create another function to handle button click 
   return (
     <div ref={vantaRef} style={{ height: '100vh', width: '100vw' }}>
       <div className="homepage" style={{ textAlign: 'center', paddingTop: '30vh', color: 'white', fontWeight: 'bold' }}>
         <h1>PollenMapz</h1>
-        <p>Breathe easy—check real-time pollen levels in immersive 3D!</p>
+        <p>Breathe easy—check real-time pollen levels in Parks near you in immersive 3D!</p>
       </div>
     </div>
   );

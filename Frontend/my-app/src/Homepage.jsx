@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from "react"; 
-import "./styling/Homepage.css";  
-import { useNavigate  } from "react-router-dom";    
-import "./styling/aboutPageButton.css"; 
+import React, { useEffect, useRef } from "react"; // this i needed for the vantajs stuff 
+import "./styling/Homepage.css";  // css styling 
+import { useNavigate } from "react-router-dom";  // needed these so i can navigate to the next page. 
+import "./styling/aboutPageButton.css"; // css style for the button 
 
 
 // using the useNavigate Hook to dynamically switch between componenets. 
@@ -51,12 +51,13 @@ function Homepage(){ // this is our main react component.
   //instantiate navigate inside the react component 
   const navigate = useNavigate();  // i use this to dynamically change between pages. 
 
+  // this below is the vanta js background stuff 
   const vantaRef = useRef(null);  // create a ref to the DOM element
-  const [vantaEffect, setVantaEffect] = useState(null);
+  const vantaEffect = useRef(null);
 
   useEffect(() => {
-    if (!vantaEffect && window.VANTA && window.VANTA.CLOUDS) {
-      const effect = window.VANTA.CLOUDS({
+    if (!vantaEffect.current && window.VANTA && window.VANTA.CLOUDS) {
+      vantaEffect.current = window.VANTA.CLOUDS({
         el: vantaRef.current,
         mouseControls: true,
         touchControls: true,
@@ -68,17 +69,19 @@ function Homepage(){ // this is our main react component.
         sunlightColor: 0x3c30ff,
         speed: 2.10,
       });
-      setVantaEffect(effect);
     }
 
     return () => {
-      if (vantaEffect) vantaEffect.destroy();
+      if (vantaEffect.current){ 
+        vantaEffect.current.destroy(); 
+        vantaEffect.current = null; 
+      }
     };
-  }, [vantaEffect]);
+  }, []);
 
-  // // create another function to handle button click  
+  // create another function to handle button click  
   function buttonClick() { 
-    // we actually call the path to where to go to 
+    // we actually call the path to where to go to for instance the about page which is a react component. 
     navigate('/about'); 
   }; 
 

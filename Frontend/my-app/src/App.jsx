@@ -14,7 +14,9 @@ import About from './About.jsx'; // this is a componenet.
 
 // routes - renders the first matching route only, which helps avoid rendering multiple components for similar paths 
 // route - Maps URLs to components. For example '/about' displays the 'About' component. 
-function App() {
+function App() { 
+
+  // below im setting up my routes that the page will have. And if you notice those routes are imported from different jsx components. 
   return ( 
     <Router> 
      <Routes> 

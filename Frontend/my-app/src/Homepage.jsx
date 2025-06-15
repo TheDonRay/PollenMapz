@@ -91,11 +91,11 @@ function Homepage(){ // this is our main react component.
   return (
     <div style={{position: "relative", height: "100vh", width: "100vw"}}> 
       <div ref={vantaRef} style={{ position: "absolute", top: 0, left: 0, height: '100%', width: '100%', zIndex: 0, }} />
-
+        {/*the div below here is really important because it allows us to position element on top of the canvas animation using zIndex: 1 or any value greater than 1 */}
         <div className="homepage" style={{ position: "relative", zIndex: 1, textAlign: 'center', paddingTop: '30vh', color: 'white', fontWeight: 'bold' }}> 
           <h1 style={{ marginBottom: '15px', fontSize: '53px' }}>PollenMapz</h1>
           <p style = {{ marginTop: 0, marginBottom: '12px', fontSize: '17px'}}>Breathe easy—check real-time pollen levels in Parks near you in immersive 3D!</p> 
-          <button style = {{marginTop: 5, marginBottom: '12px', fontSize: '14px', fontWeight: 'bold'}} className = "buttonStyle" onClick={buttonClick}>Meet PollenMapz!</button>
+          <button style = {{marginTop: 5, marginBottom: '12px', fontSize: '14px', fontWeight: 'bold'}} className = "buttonStyle" onClick={buttonClick}>Meet PollenMapz!</button> 
         </div>
       </div>
   ); // if you are wondering the return statement in our react component defines what will be rendered on the screen when the component is used. 

@@ -92,7 +92,7 @@ function Homepage(){ // this is our main react component.
         <div className="homepage" style={{ position: "relative", zIndex: 1, textAlign: 'center', paddingTop: '30vh', color: 'white', fontWeight: 'bold' }}> 
           <h1 style={{ marginBottom: '15px', fontSize: '53px' }}>PollenMapz</h1>
           <p style = {{ marginTop: 0, marginBottom: '12px', fontSize: '17px'}}>Breathe easy—check real-time pollen levels in Parks near you in immersive 3D!</p> 
-          <button style = {{marginTop: 5, marginBottom: '12px', fontSize: '14px', fontWeight: 'bold'}} className = "buttonStyle" onClick={buttonClick}>About PollenMapz</button>
+          <button style = {{marginTop: 5, marginBottom: '12px', fontSize: '14px', fontWeight: 'bold'}} className = "buttonStyle" onClick={buttonClick}>Meet PollenMapz!</button>
         </div>
       </div>
   ); // if you are wondering the return statement in our react component defines what will be rendered on the screen when the component is used. 

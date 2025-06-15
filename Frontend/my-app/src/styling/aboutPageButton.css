@@ -1,0 +1,10 @@
+.buttonStyle {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  color: white; /* No quotes needed for keyword 'white' */
+  padding: 12px 28px; /* No quotes needed for numerical values + units */
+  font-size: 0.9rem; /* No quotes needed */
+  border-radius: 20px; /* No quotes needed */
+  cursor: pointer; /* No quotes needed for keyword 'pointer' */
+  /* font-family: ; */
+}

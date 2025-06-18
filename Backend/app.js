@@ -13,10 +13,13 @@ app.use(cors()); // use CORS middleware  | had to install it thats why it wasn't
 
 // importing statements. 
 const {PORT, NODE_ENV} = require('./config/env.js'); 
+const connectiondb = require('./database/mongo.js'); // data base stuff  
+
+// importing routes here below also just remember that CRUD means create read update delete. 
 const Homepage = require('./routes/home.js'); 
-const connectiondb = require('./database/mongo.js'); // data base stuff 
 const locationSearch = require("./routes/search.js");   
-const aboutpage = require('./routes/about.js'); 
+const aboutpage = require('./routes/about.js');  
+
 
 /*===========================================================================================================================================================================================*/  
 
@@ -28,6 +31,7 @@ app.use('/api/v1/location', locationSearch); // mounting a router
 app.use('/api/v1/aboutPage', aboutpage); 
 // key to understand that when mounting the routes we essentially need to call that same route in our fetch call in the frontend 
 
+// random testing a route on a updating post request for user will test using http pie 
 
 app.get('/', (req, res) => { // just to test that the server is running as of now. 
     res.send('Backend is Successfully Running'); 

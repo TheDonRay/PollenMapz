@@ -6,7 +6,11 @@ const about = express.Router();
 // page holds the 
 
 about.get('/', (req, res) => { 
-    res.send('about page is running');  
+    res.send(`
+        PollenMapz helps you enjoy the outdoors while staying safe from allergies. By combining real-time pollen data with a location-based view,
+        it lets you check how allergy-friendly a park or area is before you go.Whether you're planning a walk or a weekend picnic, PollenMapz gives 
+        you clear, visual pollen insights — so you can breathe easy and explore confidently.
+        `);  
 });  
 
 

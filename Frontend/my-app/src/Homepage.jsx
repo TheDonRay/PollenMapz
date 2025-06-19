@@ -4,47 +4,7 @@ import { useNavigate } from "react-router-dom";  // needed these so i can naviga
 import "./styling/aboutPageButton.css"; // css style for the button 
 
 
-// using the useNavigate Hook to dynamically switch between componenets. 
 
-
-// to access backend data use fetech or axios to make HTTP requests.  
-//import axios from 'axios'; 
-
-// example of testing and fetching from the backend just testing some stuff 
-
-// function Homepage() { 
-
-//     const [backendMessage, setBackendMessage] = useState('');  
-
-//     function handleClick() { 
-//         // going to use the fetch keyword 
-//         // in the fetch keyword we are going to call it at where our route is which in this case is at api/v1/home
-//         fetch('/api/v1/home')
-//             .then((res) => res.text())  // the res data and err are all callback functions meaning that 
-//             .then((data) => setBackendMessage(data))
-//             .catch((err) => console.error(err)); 
-//     } 
-
-//     return (
-//         <div> 
-//             <button onClick={handleClick}>View Backend data</button>
-
-//             <div className="homepage">
-//             <h1>Welcome to PollenMapz</h1>
-//         </div>
-
-//       {backendMessage && (
-//         <div>
-//           <h2>Backend says:</h2>
-//           <p>{backendMessage}</p>
-//         </div>
-//         )}
-//     </div>
-//     ); // need to add cool background picture im thinking of keeping the button just to make sure i understand but depends after i take 
-//     // notes in my backend dev notebook. 
-// }
-
-/* ======================================================================================================================================================== */ 
 
 function Homepage(){ // this is our main react component.
 
@@ -90,7 +50,7 @@ function Homepage(){ // this is our main react component.
 
   return (
     <div style={{position: "relative", height: "100vh", width: "100vw"}}> 
-      <div ref={vantaRef} style={{ position: "absolute", top: 0, left: 0, height: '100%', width: '100%', zIndex: 0, }} />
+      <div ref={vantaRef  } style={{ position: "absolute", top: 0, left: 0, height: '100%', width: '100%', zIndex: 0, }} />
         {/*the div below here is really important because it allows us to position element on top of the canvas animation using zIndex: 1 or any value greater than 1 */}
         <div className="homepage" style={{ position: "relative", zIndex: 1, textAlign: 'center', paddingTop: '30vh', color: 'white', fontWeight: 'bold' }}> 
           <h1 style={{ marginBottom: '15px', fontSize: '53px' }}>PollenMapz</h1>

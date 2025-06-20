@@ -24,10 +24,13 @@ function Homepage(){ // this is our main react component.
         gyroControls: false,
         minHeight: 200.00,
         minWidth: 200.00,
-        skyColor: 0xd78268,
-        sunColor: 0xffd618,
-        sunlightColor: 0x3c30ff,
-        speed: 2.10,
+        skyColor: 0xd98127,
+        cloudColor: 0xd9d3d3,
+        cloudShadowColor: 0x1f2e57,
+        sunColor: 0xb9742c,
+        sunGlareColor: 0xd75d44,
+        sunlightColor: 0xd48241,
+        speed: 2.50
       });
     }
 
@@ -52,10 +55,10 @@ function Homepage(){ // this is our main react component.
     <div style={{position: "relative", height: "100vh", width: "100vw"}}> 
       <div ref={vantaRef  } style={{ position: "absolute", top: 0, left: 0, height: '100%', width: '100%', zIndex: 0, }} />
         {/*the div below here is really important because it allows us to position element on top of the canvas animation using zIndex: 1 or any value greater than 1 */}
-        <div className="homepage" style={{ position: "relative", zIndex: 1, textAlign: 'center', paddingTop: '30vh', color: 'white', fontWeight: 'bold' }}> 
+        <div className="homepage" style={{ position: "relative", zIndex: 1, textAlign: 'center', paddingTop: '30vh', color: '#06402B', fontWeight: 'bold' }}> 
           <h1 style={{ marginBottom: '15px', fontSize: '53px' }}>PollenMapz</h1>
           <p style = {{ marginTop: 0, marginBottom: '12px', fontSize: '17px'}}>Breathe easy—check real-time pollen levels in Parks near you in immersive 3D!</p> 
-          <button style = {{marginTop: 5, marginBottom: '12px', fontSize: '14px', fontWeight: 'bold'}} className = "buttonStyle" onClick={buttonClick}>Meet PollenMapz!</button> 
+          <button style = {{marginTop: 5, marginBottom: '12px', fontSize: '14px', color: '#06402B', fontWeight: 'bold'}} className = "buttonStyle" onClick={buttonClick}>Meet PollenMapz!</button> 
         </div>
       </div>
   ); // if you are wondering the return statement in our react component defines what will be rendered on the screen when the component is used. 

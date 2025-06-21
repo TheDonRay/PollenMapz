@@ -26,8 +26,7 @@ function About() { // main component function
       // define variable to hold async function to get the data from the backend at the restful api 
       const fetchData = async () => { 
         try { 
-          console.log("testing"); 
-          const response = await fetch('http://localhost/api/v1/aboutPage'); 
+          const response = await fetch('http://localhost:8000/api/v1/aboutPage'); 
           const result = await response.text(); 
           setAboutData(result);  
         } 
@@ -96,7 +95,7 @@ return (
           flexDirection: "row",
           alignItems: "center",
           gap: "4rem",
-          paddingLeft: "15vw",
+          paddingLeft: "13.2vw",
           paddingRight: "10vw",
           height: "75vh", // <-- move padding here instead
           color: "#06402B",

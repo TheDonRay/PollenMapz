@@ -133,7 +133,8 @@ return (
           }}
         >
           <h1>What Is PollenMapz?</h1>
-          <p style = {{ color: "black"}}>{data ? data : "Loading..."}</p>
+          <p style = {{ color: "black"}}>{data ? data : "Loading..."}</p> 
+          <button>About Creator</button>
         </div>
       </div>
     </div>

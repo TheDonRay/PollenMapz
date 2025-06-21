@@ -1,5 +1,5 @@
 // install mongo js on this    
-const mongoose = require('mongoose'); 
+const mongoose = require('mongoose'); // import the library 
 const {DB_URI, NODE_ENV} = require('../config/env.js'); // where i ran into a issue forgot the two dots vs one dot can create a big issue
 
 // need to check if DB is successfuly connected to our backend server .  
@@ -11,12 +11,12 @@ if(!DB_URI) {
 async function ConnectionDatabase() { 
 
     try { 
-        await mongoose.connect(DB_URI); 
+        await mongoose.connect(DB_URI); // waiting for the connection to happen 
         console.log(`MongoDB connected in ${NODE_ENV} mode`)
     } 
     catch(error){ 
         console.error('Error connecting to Database', error);  
-        process.exit(1); 
+        process.exit(1); // used for errors 
     }
 };
 

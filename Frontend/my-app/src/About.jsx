@@ -12,14 +12,32 @@ function About() { // main component function
     // basically want it to import the backend data but first i need to import the background animation with vantaJS so lets try that out.  
     const navigate = useNavigate(); // using this to navigat between pages. 
 
+        // create another function to handle button click  
+      function buttonClick() { 
+        // we actually call the path to where to go to for instance the about page which is a react component. 
+        navigate('/search'); 
+      }; 
+    
     // need to add the useEffect and use state for fetching data from the backend 
     const [data, setAboutData] = useState(null);  
 
     // set up the useEffect route here to fetch data from the backend for the about me text and display in paragraph. 
     useEffect(()=> { 
       // define variable to hold async function to get the data from the backend at the restful api 
-  
-    }, []); 
+      const fetchData = async () => { 
+        try { 
+          console.log("testing"); 
+          const response = await fetch('http://localhost/api/v1/aboutPage'); 
+          const result = await response.text(); 
+          setAboutData(result);  
+        } 
+        catch(error) { 
+          console.error('Error fetching data', error); 
+        }
+      }; 
+      fetchData(); 
+    }, []); // make sure i run only once 
+
     // below is for the vanta js state stuff. 
     const vantaRef = useRef(null);  
      const vantaEffect = useRef(null);
@@ -50,12 +68,6 @@ function About() { // main component function
           }
         };
       }, []);
-    
-      // create another function to handle button click  
-      function buttonClick() { 
-        // we actually call the path to where to go to for instance the about page which is a react component. 
-        navigate('/search'); 
-      }; 
     
       /* note that one thing of a error i ran into was the fact that when adding the button element it would slow up so to fix that i lay out a full background which is the vanta animation and then I 
       overlay the content in front of it cleanly. so essentially the first div below is necessary because it avoids the laggyness since it kept rendering the animations on top of the button*/ 
@@ -121,7 +133,7 @@ return (
           }}
         >
           <h1>What Is PollenMapz?</h1>
-          <p>put backend data here</p>
+          <p style = {{ color: "black"}}>{data ? data : "Loading..."}</p>
         </div>
       </div>
     </div>

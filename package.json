@@ -1,5 +1,9 @@
 {
   "dependencies": {
-    "mongodb": "^6.17.0"
+    "clsx": "^2.1.1",
+    "mongodb": "^6.17.0",
+    "motion": "^12.18.1",
+    "node-fetch": "^3.3.2",
+    "tailwind-merge": "^3.3.1"
   }
 }

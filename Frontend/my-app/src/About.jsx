@@ -60,16 +60,75 @@ function About() { // main component function
       /* note that one thing of a error i ran into was the fact that when adding the button element it would slow up so to fix that i lay out a full background which is the vanta animation and then I 
       overlay the content in front of it cleanly. so essentially the first div below is necessary because it avoids the laggyness since it kept rendering the animations on top of the button*/ 
     
-      return (
-        <div style={{position: "relative", height: "100vh", width: "100vw"}}> 
-          <div ref={vantaRef  } style={{ position: "absolute", top: 0, left: 0, height: '100%', width: '100%', zIndex: 0, }} />
-            {/*the div below here is really important because it allows us to position element on top of the canvas animation using zIndex: 1 or any value greater than 1 */}
-            <div className="aboutPage" style={{ position: "relative", zIndex: 1, textAlign: 'left', paddingTop: '30vh', paddingLeft: '10vw', color: '#06402B', fontWeight: 'bold' }}> 
-              <h1 className = "heading">About PollenMapz</h1> 
-              <button style = {{marginTop: -20, marginBottom: '10px', fontSize: '15px', color: '#06402B', fontWeight: 'bold'}} className = "buttonStyle" onClick={buttonClick}>Discover Your Park!</button> 
-            </div>
-          </div>
-      ); // if you are wondering the return statement in our react component defines what will be rendered on the screen when the component is used. 
+return (
+  <>
+    <div style={{ position: "relative", height: "100vh", width: "100vw" }}>
+      <div
+        ref={vantaRef}
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          height: "100%",
+          width: "100%",
+          zIndex: 0,
+        }}
+      />
+
+      {/* Parent flex container for both sections */}
+      <div
+        style={{
+          position: "relative",
+          zIndex: 1,
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          gap: "4rem",
+          paddingLeft: "15vw",
+          paddingRight: "10vw",
+          height: "75vh", // <-- move padding here instead
+          color: "#06402B",
+          fontWeight: "bold",
+        }}
+      >
+        {/* About Section */}
+        <div className="aboutPage" style={{ textAlign: "left", marginTop: "-10rem" }}>
+          <h1 className="heading">About PollenMapz</h1>
+          <button
+            style={{
+              marginTop: -20,
+              marginBottom: "10px",
+              fontSize: "15px",
+              color: "#06402B",
+              fontWeight: "bold",
+            }}
+            className="buttonStyle"
+            onClick={buttonClick}
+          >
+            Discover Your Park!
+          </button>
+        </div>
+
+        {/* Card Section */}
+        <div
+          style={{
+            backgroundColor: "transparent",
+            padding: "2rem",
+            borderRadius: "12px",
+            boxShadow: "0 4px 12px rgba(10, 97, 7, 0.84)",
+            minWidth: "300px",
+            maxWidth: "400px",
+          }}
+        >
+          <h1>What Is PollenMapz?</h1>
+          <p>put backend data here</p>
+        </div>
+      </div>
+    </div>
+  </>
+);
+
+
 }
 
 export default About; 

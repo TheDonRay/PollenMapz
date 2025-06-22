@@ -1,7 +1,9 @@
 import React from 'react'; 
-import './styling/aboutPage.css' 
+import './styling/aboutPage.css'  
+import './styling/abtcreatorbutton.css'
 import { useEffect, useState, useRef } from 'react'; 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; 
+
 
 // create the about jsx file here which holds why i created this website. 
 // do want to include some other 3d features from the library i found 
@@ -18,8 +20,8 @@ function About() { // main component function
       };  
 
       // creating another function to handle the about creator click which is going to send me to linkedn 
-      function aboutCreatorButton() { 
-        window.location.href = "https://www.linkedin.com/in/rayatchowdhury2005/"
+      function aboutCreatorButton() { // here i just created a function to handle the second button click that leds you to my linkedn 
+        window.location.href = "https://www.linkedin.com/in/rayatchowdhury2005/" // locatio href is typically used 
       }
     
     // need to add the useEffect and use state for fetching data from the backend 
@@ -138,7 +140,7 @@ return (
         >
           <h1>What Is PollenMapz?</h1>
           <p style = {{ color: "black"}}>{data ? data : "Loading..."}</p> 
-          <button onClick={aboutCreatorButton}>About Creator</button>
+          <button className = "creator-btn" onClick={aboutCreatorButton} style = {{boxShadow: "0 4px 12px rgba(10, 97, 7, 0.84)",  }}>About Creator</button>
         </div>
       </div>
     </div>

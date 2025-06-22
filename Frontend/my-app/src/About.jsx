@@ -21,7 +21,7 @@ function About() { // main component function
 
       // creating another function to handle the about creator click which is going to send me to linkedn 
       function aboutCreatorButton() { // here i just created a function to handle the second button click that leds you to my linkedn 
-        window.location.href = "https://www.linkedin.com/in/rayatchowdhury2005/" // locatio href is typically used 
+        window.location.href = "https://www.linkedin.com/in/rayatchowdhury2005/" // locatio href is typically used It is used in JavaScript to redirect the browser to a new URL. 
       }
     
     // need to add the useEffect and use state for fetching data from the backend 

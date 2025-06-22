@@ -112,8 +112,9 @@ return (
               fontSize: "15px",
               color: "#06402B",
               fontWeight: "bold",
+              boxShadow: "0 4px 12px rgba(10, 97, 7, 0.84)",
             }}
-            className="buttonStyle"
+            className="buttonStyle" 
             onClick={buttonClick}
           >
             Discover Your Park!

@@ -11,12 +11,16 @@ import { useNavigate } from 'react-router-dom';
 function About() { // main component function 
     // basically want it to import the backend data but first i need to import the background animation with vantaJS so lets try that out.  
     const navigate = useNavigate(); // using this to navigat between pages. 
-
         // create another function to handle button click  
       function buttonClick() { 
         // we actually call the path to where to go to for instance the about page which is a react component. 
         navigate('/search'); 
-      }; 
+      };  
+
+      // creating another function to handle the about creator click which is going to send me to linkedn 
+      function aboutCreatorButton() { 
+        window.location.href = "https://www.linkedin.com/in/rayatchowdhury2005/"
+      }
     
     // need to add the useEffect and use state for fetching data from the backend 
     const [data, setAboutData] = useState(null);  
@@ -134,7 +138,7 @@ return (
         >
           <h1>What Is PollenMapz?</h1>
           <p style = {{ color: "black"}}>{data ? data : "Loading..."}</p> 
-          <button>About Creator</button>
+          <button onClick={aboutCreatorButton}>About Creator</button>
         </div>
       </div>
     </div>

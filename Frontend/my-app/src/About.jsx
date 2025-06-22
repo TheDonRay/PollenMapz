@@ -62,7 +62,7 @@ function About() { // main component function
             sunColor: 0xb9742c,
             sunGlareColor: 0xd75d44,
             sunlightColor: 0xd48241,
-            speed: 2.50
+            speed: 3.00
           });
         }
     

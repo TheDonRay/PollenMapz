@@ -1,12 +1,13 @@
 
 import "./styling/searchloc.css" // importing the css files   
 import React, { useEffect, useRef } from "react";
-// need to import the link library to link between pages  
+
 // basically helps with changing between pages/components in React. Keeps the app fast and responsive. 
 
 
 // will include the google maps API 
-// this will have a different background compared to the front two pages
+// this will have a different background compared to the front two pages 
+// this will also incorporate the google maps api key stuff 
 
 function SearchLoc() { 
     const vantaRef  = useRef(null); 

@@ -115,7 +115,7 @@ return (
             style={{
               marginTop: -20,
               marginBottom: "10px",
-              fontSize: "15px",
+              fontSize: "16px",
               color: "#06402B",
               fontWeight: "bold",
               boxShadow: "0 4px 12px rgba(10, 97, 7, 0.84)",
@@ -139,7 +139,7 @@ return (
           }}
         >
           <h1>What Is PollenMapz?</h1>
-          <p style = {{ color: "black"}}>{data ? data : "Loading..."}</p> 
+          <p style = {{ color: "black", fontSize: "17px"}}>{data ? data : "Loading..."}</p> 
           <button className = "creator-btn" onClick={aboutCreatorButton} style = {{boxShadow: "0 4px 12px rgba(10, 97, 7, 0.84)",  }}>About Creator</button>
         </div>
       </div>

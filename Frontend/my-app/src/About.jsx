@@ -62,7 +62,7 @@ function About() { // main component function
             sunColor: 0xb9742c,
             sunGlareColor: 0xd75d44,
             sunlightColor: 0xd48241,
-            speed: 3.00
+            speed: 2.5
           });
         }
     
@@ -101,7 +101,7 @@ return (
           flexDirection: "row",
           alignItems: "center",
           gap: "4rem",
-          paddingLeft: "13.2vw",
+          paddingLeft: "3.3vw",
           paddingRight: "10vw",
           height: "75vh", // <-- move padding here instead
           color: "#06402B",
@@ -135,7 +135,7 @@ return (
             borderRadius: "12px",
             boxShadow: "0 4px 12px rgba(10, 97, 7, 0.84)",
             minWidth: "300px",
-            maxWidth: "400px",
+            maxWidth: "500px",
           }}
         >
           <h1>What Is PollenMapz?</h1>

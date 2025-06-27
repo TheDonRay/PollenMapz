@@ -16,7 +16,7 @@ const parkLocSchema = new mongoose.Schema({
     multipolygon: Object, 
 }); 
 
-// export thi sschema as such  
+// export this schema as such  
 // remember agani we are doing commonJS 
 
 const ParkLocationModel = mongoose.model('ParkLocation', parkLocSchema); 

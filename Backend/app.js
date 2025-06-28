@@ -12,8 +12,8 @@ app.use(cors()); // use CORS middleware  | had to install it thats why it wasn't
 
 
 // importing statements. 
-const {PORT, NODE_ENV} = require('./config/env.js'); 
-const connectiondb = require('./database/mongo.js'); // data base stuff  
+const {PORT, NODE_ENV} = require('./config/env.js'); // for which port i am using 
+const connectiondb = require('./database/mongo.js'); // data base connection with mongodb 
 
 // importing routes here below also just remember that CRUD means create read update delete. 
 const Homepage = require('./routes/home.js'); 
@@ -27,7 +27,7 @@ const aboutpage = require('./routes/about.js');
 // use the key word use. 
 
 app.use('/api/v1/', Homepage); // this is mounting a router and its more in depth to it the idea is that 
-app.use('/api/v1/location', locationSearch); // mounting a router 
+app.use('/api/v1/', locationSearch); // mounting a router 
 app.use('/api/v1/aboutPage', aboutpage); 
 // key to understand that when mounting the routes we essentially need to call that same route in our fetch call in the frontend 
 
@@ -40,7 +40,7 @@ app.get('/', (req, res) => { // just to test that the server is running as of no
 
 
 
-app.listen(PORT, async() => { 
+app.listen(PORT, async() => { // async because our connectiondb function is also async 
     console.log(`Server is sucessfully running in ${NODE_ENV} mode on port http://localhost:${PORT}`);  
 
     await connectiondb(); // call this to wait for the db connection to come. 

@@ -5,7 +5,7 @@ const searchLocation = express.Router();
 
 searchLocation.get('/search', (req, res) => {  // represents the search page for when you are searching for location. 
 
-    res.send("Getting location of where you are"); 
+    res.send("search route is running fine i believe"); 
 }); 
 
 module.exports = searchLocation; 

@@ -25,25 +25,25 @@ function About() { // main component function
       }
     
     // need to add the useEffect and use state for fetching data from the backend 
-    const [data, setAboutData] = useState(null);  
+    const [data, setAboutData] = useState(null);  // use state basically re renders the component on the page when data is updated. 
 
     // set up the useEffect route here to fetch data from the backend for the about me text and display in paragraph. 
     useEffect(()=> { 
       // define variable to hold async function to get the data from the backend at the restful api 
       const fetchData = async () => { 
         try { 
-          const response = await fetch('http://localhost:8000/api/v1/aboutPage'); 
-          const result = await response.text(); 
+          const response = await fetch('http://localhost:8000/api/v1/aboutPage'); // follow the prefix + path syntax and fetch on the route you have 
+          const result = await response.text(); // was displaying text data in the backend 
           setAboutData(result);  
         } 
         catch(error) { 
           console.error('Error fetching data', error); 
         }
       }; 
-      fetchData(); 
+      fetchData(); // invoking this function 
     }, []); // make sure i run only once 
 
-    // below is for the vanta js state stuff. 
+    // below is for the vanta js state background 
     const vantaRef = useRef(null);  
      const vantaEffect = useRef(null);
     

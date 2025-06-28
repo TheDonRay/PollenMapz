@@ -4,12 +4,12 @@ const mongo = require('mongoose');
 const csv = require('csvtojson');  
 // we need to call our data schema model since thats where we will be querying our data for when user enters location 
 const ParkData = require('../Model/park.js'); // remember we are using the two dots the .. means "go up one folder" 
-const { default: mongoose } = require('mongoose');
+
 
 
 
 // connect to the db 
-mongoose.connect('mongodb://localhost:27017/pollenmapz', { 
+mongo.connect('mongodb://localhost:27017/pollenmapz', { 
     useNewUrlParser: true, 
     useUnifiedTopology: true, 
 }); 
@@ -31,10 +31,11 @@ csv()
         await ParkData.insertMany(transformingData); 
         console.log("Data inserted Successfully !");  
         // now go ahead and close the connection 
-        mongoose.disconnect(); 
+        mongo.disconnect(); 
     })
     .catch(error => { 
         console.error("Error", error); 
-        mongoose.disconnect();  
+        mongo.disconnect();  
         });  
 
+// now we need dont need to export the module file because this is going to only run once to convert the data 

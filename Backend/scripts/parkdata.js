@@ -25,18 +25,19 @@ csv()
                     console.warn(`Skipping row ${i} with invalid coordinates:`, parkData.lat, parkData.lng);
                     return null;
                 }
-
-                return {
-                    name: parkData.name,
-                    address: parkData.address,
-                    coordinates: { lat, lng }
-                };
+                else{ // this part checks if on the other case everything is valid then we will return a new object that is similar to our database schema model which holds how the data should look. 
+                    return {
+                        name: parkData.name,
+                        address: parkData.address,
+                        coordinates: { lat, lng }
+                    }; 
+                }
             })
             .filter(Boolean); // removes all null entries
 
-        await ParkData.insertMany(transformingData); 
+        await ParkData.insertMany(transformingData); // inserts the cleaned data into mongodb 
         console.log("Data inserted Successfully!");
-        mongo.disconnect(); 
+        mongo.disconnect(); // disconnect from the data base after script completes. 
     })
     .catch(error => { 
         console.error("Error", error); 

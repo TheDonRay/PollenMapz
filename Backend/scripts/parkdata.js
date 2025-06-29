@@ -1,0 +1,46 @@
+// import mongoose 
+const mongo = require('mongoose'); 
+// import the csv to json 
+const csv = require('csvtojson');  
+// we need to call our data schema model since thats where we will be querying our data for when user enters location 
+const ParkData = require('../Model/park.js'); // remember we are using the two dots the .. means "go up one folder" 
+
+
+
+
+// connect to the db 
+mongo.connect('mongodb://localhost:27017/pollenmapz');  
+
+
+// now i need to load and parse the csv 
+csv()
+    .fromFile("./data/parkdata.csv")
+    .then(async (jsonArray) => { 
+        const transformingData = jsonArray
+            .map((parkData, i) => {
+                const lat = parseFloat(parkData.lat?.trim()); // the trim here what it basically does is that it trims any extra spaces from the csv values 
+                const lng = parseFloat(parkData.lng?.trim());
+
+                if (isNaN(lat) || isNaN(lng)) {
+                    console.warn(`Skipping row ${i} with invalid coordinates:`, parkData.lat, parkData.lng);
+                    return null;
+                }
+
+                return {
+                    name: parkData.name,
+                    address: parkData.address,
+                    coordinates: { lat, lng }
+                };
+            })
+            .filter(Boolean); // removes all null entries
+
+        await ParkData.insertMany(transformingData); 
+        console.log("Data inserted Successfully!");
+        mongo.disconnect(); 
+    })
+    .catch(error => { 
+        console.error("Error", error); 
+        mongo.disconnect();  
+    });
+
+// now we need dont need to export the module file because this is going to only run once to convert the data 

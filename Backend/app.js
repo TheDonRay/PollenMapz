@@ -20,6 +20,7 @@ const Homepage = require('./routes/home.js');
 const locationSearch = require("./routes/search.js");   
 const aboutpage = require('./routes/about.js');  
 
+// For database statements to handle querying of data etc and data model that holds my data model schema of how data looks in mongoose db 
 
 /*===========================================================================================================================================================================================*/  
 

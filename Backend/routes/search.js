@@ -12,9 +12,9 @@ searchLocation.get('/search', async (req, res) => {  // represents the search pa
     // can i do a settime out function for this ? 
     setTimeout(() => { 
         const SearchedLocation = req.query.SearchedLocation; 
-        console.log(SearchedLocation); 
-    }, 5000);   
-    console.log(`Your location is ${SearchedLocation}`); 
+         console.log(`Your location is ${req.query.SearchedLocation}`); // this will print after the 5 seconds are reached. 
+    }, 5000);     
+    console.log("Fetching Data......");  // this will print immediately. 
 }); 
 
 module.exports = searchLocation; 

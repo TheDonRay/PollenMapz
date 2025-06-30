@@ -14,7 +14,9 @@ searchLocation.get('/search', async (req, res) => {  // represents the search pa
         const SearchedLocation = req.query.SearchedLocation; 
          console.log(`Your location is ${req.query.SearchedLocation}`); // this will print after the 5 seconds are reached. 
     }, 5000);     
-    console.log("Fetching Data......");  // this will print immediately. 
+    console.log("Fetching Data......");  // this will print immediately.  
+
+    // next step is to actually incorporate the searching using the data park data model that holds the model schema of how the data is presented in the mongoDb. 
 }); 
 
 module.exports = searchLocation; 

@@ -6,14 +6,16 @@ const app = express();
 // using CORS (cross Origin resource sharing) 
 const cors = require('cors'); // since my backend and frontend are running on different routes 
 require('dotenv').config(); // need this for the env setup that helps env variable 
-
+const mongoose = require('mongoose'); 
 
 app.use(cors()); // use CORS middleware  | had to install it thats why it wasn't working. 
 
 
-// importing statements. 
+// importing statements such as env variables and mongodb connection etc. 
 const {PORT, NODE_ENV} = require('./config/env.js'); // for which port i am using 
-const connectiondb = require('./database/mongo.js'); // data base connection with mongodb 
+const connectiondb = require('./database/mongo.js'); // data base connection with mongodb  
+mongoose.connect('mongodb://localhost:27017/pollenmapz'); // 27017 represents the default port MongoDB uses to listen for incoming connections.
+
 
 // importing routes here below also just remember that CRUD means create read update delete. 
 const Homepage = require('./routes/home.js'); 

@@ -5,10 +5,10 @@ const csv = require('csvtojson');
 // we need to call our data schema model since thats where we will be querying our data for when user enters location 
 const ParkData = require('../Model/park.js'); // remember we are using the two dots the .. means "go up one folder" 
 
+//This code is designed to convert a CSV file to JSON and then insert that data into your MongoDB database — specifically into a ParkData collection using Mongoose.
 
 
-
-// connect to the db 
+// connect to the mongo db 
 mongo.connect('mongodb://localhost:27017/pollenmapz');  
 
 

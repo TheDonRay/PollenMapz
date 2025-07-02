@@ -17,7 +17,7 @@ const parkLocSchema = new mongoose.Schema({
 }); 
 
 // export this schema as such  
-// remember agani we are doing commonJS 
+// remember again we are doing commonJS 
 
 const ParkLocationModel = mongoose.model('ParkLocation', parkLocSchema); 
 module.exports = ParkLocationModel; 

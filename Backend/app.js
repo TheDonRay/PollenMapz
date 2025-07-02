@@ -14,7 +14,7 @@ app.use(cors()); // use CORS middleware  | had to install it thats why it wasn't
 // importing statements such as env variables and mongodb connection etc. 
 const {PORT, NODE_ENV} = require('./config/env.js'); // for which port i am using 
 const connectiondb = require('./database/mongo.js'); // data base connection with mongodb  
-mongoose.connect('mongodb://localhost:27017/pollenmapz'); // 27017 represents the default port MongoDB uses to listen for incoming connections.
+//mongoose.connect('mongodb://localhost:27017/pollenmapz'); // 27017 represents the default port MongoDB uses to listen for incoming connections.
 
 
 // importing routes here below also just remember that CRUD means create read update delete. 
@@ -30,9 +30,9 @@ const aboutpage = require('./routes/about.js');
 // use the key word use. 
 
 app.use('/api/v1/', Homepage); // this is mounting a router and its more in depth to it the idea is that 
-app.use('/api/v1/', locationSearch); // mounting a router 
+app.use('/api/v1/location', locationSearch); // mounting a router 
 app.use('/api/v1/aboutPage', aboutpage); 
-// key to understand that when mounting the routes we essentially need to call that same route in our fetch call in the frontend 
+// key to understand that when mounting the routes we essentially need to call that same route in our fetch call in the frontend to show data to the frontend 
 
 // random testing a route on a updating post request for user will test using http pie 
 

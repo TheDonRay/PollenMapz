@@ -6,15 +6,18 @@ const Park = require("../Model/park.js"); // include the model of how the databa
 // to get the user location 
 
 searchLocation.get('/search', async (req, res) => { // simple query to get the user location based of the location they put.  
-    const getUserLocation = req.query.getUserLocation; 
-    // here the user result will go where we need to find that data that was posted here but for now I will just console.log the item 
-    const result = await Park.find({ name: new RegExp(getUserLocation, 'i')});  // we call this line essentially querying the database. 
+    const getUserLocation = req.query.getUserLocation;  
+    
+    // here the user result will go where we need to find that data that was posted here but for now I will just console.log the item  
+    // console.log(`You entered: ${getUserLocation}`); 
+    const result = await Park.find({});  // we call this line essentially querying the database.    
+    console.log(result); 
     // what this line does here is that the Park.find is a mongoose query that searches the MongoDB collection associated with the park model 
     //the line { name: new RegExp(getUserLocation, 'i)} this is the filter criteria. Its saying search for documents where the name field matches the regular expression. 
     // query which in our case is the getUserLocation is expected to be a string containing the user's search input 
     // new RegExp(query (in our case query = getUserLocation), 'i') creates a regular expression that matches the value of the query, and the 'i' flag makes it case-insensitive.  
     // example: if query = central it will match with "Central Park" etc
-    res.json(result); 
+    //res.json(result); 
 }); 
 
 module.exports = searchLocation; 

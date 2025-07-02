@@ -9,7 +9,7 @@ const ParkData = require('../Model/park.js'); // remember we are using the two d
 
 
 // connect to the mongo db 
-mongo.connect('mongodb://localhost:27017/pollenmapz');  
+mongo.connect('mongodb://localhost:27017/pollenmapz');  // need this to parse csv to json data. 
 
 
 // now i need to load and parse the csv 

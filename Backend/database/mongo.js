@@ -8,7 +8,7 @@ if(!DB_URI) {
 } 
  
 
-async function ConnectionDatabase() { 
+async function ConnectionDatabase() { // function name to connect the database but first you need to make sure that mongo db is actually installed in your machine. 
 
     try { 
         await mongoose.connect(DB_URI); // waiting for the connection to happen 

@@ -6,7 +6,8 @@ const Park = require("../Model/park.js"); // include the model of how the databa
 // to get the user location 
 
 searchLocation.get('/search', async (req, res) => { // simple query to get the user location based of the location they put.  
-    const getUserLocation = req.query.getUserLocation;  
+    const getUserLocation = req.query.getUserLocation;   
+    console.log(req.query.getUserLocation); 
     
     // here the user result will go where we need to find that data that was posted here but for now I will just console.log the item  
     // console.log(`You entered: ${getUserLocation}`); 

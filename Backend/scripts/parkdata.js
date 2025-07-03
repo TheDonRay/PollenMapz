@@ -35,13 +35,28 @@ csv()
             })
             .filter(Boolean); // removes all null entries
 
-        await ParkData.insertMany(transformingData); // inserts the cleaned data into mongodb 
-        console.log("Data inserted Successfully!");
-        mongo.disconnect(); // disconnect from the data base after script completes. 
-    })
-    .catch(error => { 
-        console.error("Error", error); 
-        mongo.disconnect();  
-    });
+        console.log(`Preparing to insert ${transformingData.length} documents...`); // added this line to test for bugs and see things that I may not see which i had before
+        console.log(transformingData.slice(0, 2)); // preview first two
 
-// now we need dont need to export the module file because this is going to only run once to convert the data 
+        try { // put in a try or catch case to test if we have any errors running into the the data being loaded into mongodb 
+            await ParkData.insertMany(transformingData);
+            console.log('Data inserted Successfully!');
+        } catch (err) {
+            console.error('Insert failed:', err);
+        } finally {
+            mongo.disconnect();
+        }
+    });
+    // what i had before here: no try or catch case to catch any missing errors 
+    //     await ParkData.insertMany(transformingData); // inserts the cleaned data into mongodb 
+    //     console.log("Data inserted Successfully!");
+    //     mongo.disconnect(); // disconnect from the data base after script completes. 
+    // })
+    // .catch(error => { 
+    //     console.error("Error", error); 
+    //     mongo.disconnect();  
+    // });
+
+// now we need dont need to export the module file because this is going to only run once to convert the data  
+
+//db.parkdatas.find().limit(5).pretty()

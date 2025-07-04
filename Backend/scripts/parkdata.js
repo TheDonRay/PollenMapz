@@ -7,7 +7,7 @@ const ParkData = require('../Model/park.js'); // remember we are using the two d
 
 //This code is designed to convert a CSV file to JSON and then insert that data into your MongoDB database — specifically into a ParkData collection using Mongoose.
 
-// note that i can also write it as a async function to handle better error handling using await keyword on the connection. just remember to invoke that function 
+// note that i can also write it as a async function which idk if is recommended to switch it to? to handle better error handling using await keyword on the connection. just remember to invoke that function 
 // connect to the mongo db 
 mongo.connect('mongodb://localhost:27017/pollenmapz');  // need this to parse csv to json data. 
 

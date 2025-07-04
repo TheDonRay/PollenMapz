@@ -7,14 +7,14 @@ const ParkData = require('../Model/park.js'); // remember we are using the two d
 
 //This code is designed to convert a CSV file to JSON and then insert that data into your MongoDB database — specifically into a ParkData collection using Mongoose.
 
-
+// note that i can also write it as a async function to handle better error handling using await keyword on the connection. just remember to invoke that function 
 // connect to the mongo db 
 mongo.connect('mongodb://localhost:27017/pollenmapz');  // need this to parse csv to json data. 
 
 
 // now i need to load and parse the csv 
 csv()
-    .fromFile("./data/parkdata.csv")
+    .fromFile("../data/parkdata.csv")
     .then(async (jsonArray) => { 
         const transformingData = jsonArray
             .map((parkData, i) => {
@@ -29,7 +29,7 @@ csv()
             .filter(Boolean); // removes all null entries
 
         console.log(`Preparing to insert ${transformingData.length} documents...`); // added this line to test for bugs and see things that I may not see which i had before
-        console.log(transformingData.slice(0, 2)); // preview first two
+        console.log(transformingData.slice(0, 2)); // preview first two did this for testing
 
         try { // put in a try or catch case to test if we have any errors running into the the data being loaded into mongodb 
             await ParkData.insertMany(transformingData);

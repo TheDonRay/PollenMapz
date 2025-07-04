@@ -18,21 +18,14 @@ csv()
     .then(async (jsonArray) => { 
         const transformingData = jsonArray
             .map((parkData, i) => {
-                const lat = parseFloat(parkData.lat?.trim()); // the trim here what it basically does is that it trims any extra spaces from the csv values 
-                const lng = parseFloat(parkData.lng?.trim());
-
-                if (isNaN(lat) || isNaN(lng)) {
-                    console.warn(`Skipping row ${i} with invalid coordinates:`, parkData.lat, parkData.lng);
-                    return null;
-                }
-                else{ // this part checks if on the other case everything is valid then we will return a new object that is similar to our database schema model which holds how the data should look. 
                     return {
-                        name: parkData.name,
-                        address: parkData.address,
-                        coordinates: { lat, lng }
+                        name: parkData["NAME311"], // if you are wondering the reason why we use NAME311 like the csv columns is because when you read a CSV file using a parser like csvtojson it creates a javascript object for each row, using the column headers as keys 
+                        address: parkData["ADDRESS"],
+                        borough: parkData["BOROUGH"], 
+                        location: parkData["LOCATION"], 
+                        multipolygon: parkData["MULTIPOLYGON"]
                     }; 
-                }
-            })
+                }) 
             .filter(Boolean); // removes all null entries
 
         console.log(`Preparing to insert ${transformingData.length} documents...`); // added this line to test for bugs and see things that I may not see which i had before
@@ -45,8 +38,8 @@ csv()
             console.error('Insert failed:', err);
         } finally {
             mongo.disconnect();
-        }
-    });
+        } 
+    }); 
     // what i had before here: no try or catch case to catch any missing errors 
     //     await ParkData.insertMany(transformingData); // inserts the cleaned data into mongodb 
     //     console.log("Data inserted Successfully!");

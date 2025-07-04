@@ -6,19 +6,16 @@ const mongoose = require("mongoose");
 
 const parkLocSchema = new mongoose.Schema({  
     // follow the syntax of what i have 
-    name: String, 
-    address: String,  
-    coordinates: { 
-        lat: Number, // the reason so is because we need to convert the actual address from csv to json data. 
-        lng: Number, 
-    }, 
-    borough: String, 
-    multipolygon: Object, 
+    name: String, // got it from the csv file for the db  NAME311
+    address: String, //ADDRESS
+    borough: String,   // from BOROUGH
+    location: String, // from LOCATION (for now, keep as string since i dont have coordinates)
+    multipolygon: mongoose.Schema.Types.Mixed
 }); 
 
 // export this schema as such  
 // remember again we are doing commonJS 
 
-const ParkLocationModel = mongoose.model('ParkLocation', parkLocSchema); 
+const ParkLocationModel = mongoose.model('ParkLocation', parkLocSchema); // note that when we query it going to be under ParkLocation but as plural and lower case so parklocations
 module.exports = ParkLocationModel; 
 

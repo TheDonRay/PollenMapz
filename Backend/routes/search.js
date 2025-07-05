@@ -5,7 +5,8 @@ const Park = require("../Model/park.js"); // include the model of how the databa
 
 // to get the user location 
 
-searchLocation.get('/search', async (req, res) => { // simple query to get the user location based of the location they put.  
+// need to write this in a try catch case using await. Then console log errors to see where its going wrong. 
+searchLocation.get('/search', async (req, res) => { // simple query to get the user location based of the location they put.  ,
     const getUserLocation = req.query.getUserLocation;   
     console.log(req.query.getUserLocation); 
     
@@ -51,4 +52,4 @@ module.exports = searchLocation;
 //     console.log("Fetching Data......");  // this will print immediately.  
 
 //     // next step is to actually incorporate the searching using the data park data model that holds the model schema of how the data is presented in the mongoDb. 
-// });  
+// });   db.parks.find({ name: "Central Park" })

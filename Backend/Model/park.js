@@ -16,6 +16,6 @@ const parkLocSchema = new mongoose.Schema({
 // export this schema as such  
 // remember again we are doing commonJS 
 
-const ParkLocationModel = mongoose.model('ParkLocation', parkLocSchema); // note that when we query it going to be under ParkLocation but as plural and lower case so parklocations
+const ParkLocationModel = mongoose.model('ParkLocation', parkLocSchema); // note that when we query it going to be under ParkLocation but as plural and lower case so parklocations on mongoDB or mongosh
 module.exports = ParkLocationModel; 
 

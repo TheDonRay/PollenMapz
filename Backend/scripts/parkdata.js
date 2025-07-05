@@ -14,13 +14,13 @@ mongo.connect('mongodb://localhost:27017/pollenmapz');  // need this to parse cs
 
 // now i need to load and parse the csv 
 csv()
-    .fromFile("../data/parkdata.csv")
+    .fromFile("./data/parkdata.csv")
     .then(async (jsonArray) => { 
         const transformingData = jsonArray
             .map((parkData, i) => {
                     return {
                         name: parkData["NAME311"], // if you are wondering the reason why we use NAME311 like the csv columns is because when you read a CSV file using a parser like csvtojson it creates a javascript object for each row, using the column headers as keys 
-                        address: parkData["ADDRESS"],
+                        address: parkData["ADDRESS"].toLowerCase(), // because address might be in lower case since the digits usually go first. 
                         borough: parkData["BOROUGH"], 
                         location: parkData["LOCATION"], 
                         multipolygon: parkData["MULTIPOLYGON"]
@@ -37,9 +37,11 @@ csv()
         } catch (err) {
             console.error('Insert failed:', err);
         } finally {
-            mongo.disconnect();
+            mongo.disconnect(); // disconnect after data is inputted. 
         } 
     }); 
+    
+    // remember we dont need to export anything its just a script. 
     // what i had before here: no try or catch case to catch any missing errors 
     //     await ParkData.insertMany(transformingData); // inserts the cleaned data into mongodb 
     //     console.log("Data inserted Successfully!");
@@ -52,4 +54,8 @@ csv()
 
 // now we need dont need to export the module file because this is going to only run once to convert the data  
 
-//db.parkdatas.find().limit(5).pretty()
+//db.parkdatas.find().limit(5).pretty() 
+
+//db.yourCollectionName.deleteMany({})
+ 
+//to find a certain name such as this; db.parklocations.find({ name: "Central Park" }).pretty() 

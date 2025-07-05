@@ -30,7 +30,7 @@ function Homepage(){ // this is our main react component.
         sunColor: 0xb9742c,
         sunGlareColor: 0xd75d44,
         sunlightColor: 0xd48241,
-        speed: 2.5
+        speed: 1.5
       });
     }
 

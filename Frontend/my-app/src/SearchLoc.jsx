@@ -11,7 +11,9 @@ import React, { useEffect, useRef } from "react";
 
 function SearchLoc() { 
     const vantaRef  = useRef(null); 
-    const vantaEffect = useRef(null); 
+    const vantaEffect = useRef(null);  
+
+    // function to insert the search bar stuff and test out 
 
     useEffect(() => { 
         if(!vantaEffect.current && window.VANTA && window.VANTA.WAVES){ 

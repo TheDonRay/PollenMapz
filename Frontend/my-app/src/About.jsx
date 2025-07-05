@@ -43,7 +43,7 @@ function About() { // main component function
       fetchData(); // invoking this function 
     }, []); // make sure i run only once 
 
-    // below is for the vanta js state background 
+    // below is for the vanta js library for state background 
     const vantaRef = useRef(null);  
      const vantaEffect = useRef(null);
     
@@ -62,7 +62,7 @@ function About() { // main component function
             sunColor: 0xb9742c,
             sunGlareColor: 0xd75d44,
             sunlightColor: 0xd48241,
-            speed: 2.5
+            speed: 1.5
           });
         }
     

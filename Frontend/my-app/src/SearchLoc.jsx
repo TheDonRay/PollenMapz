@@ -8,40 +8,40 @@ import React, { useEffect, useRef } from "react";
 // will include the google maps API 
 // this will have a different background compared to the front two pages 
 // this will also incorporate the google maps api key stuff 
+// want to keep the background consistent. 
 
-function SearchLoc() { 
-    const vantaRef  = useRef(null); 
-    const vantaEffect = useRef(null);  
+function SearchLoc() {  
 
-    // function to insert the search bar stuff and test out 
-
-    useEffect(() => { 
-        if(!vantaEffect.current && window.VANTA && window.VANTA.WAVES){ 
-            vantaEffect.current = window.VANTA.WAVES({  
-                el: vantaRef.current, 
-                mouseControls: true,
-                touchControls: true,
-                gyroControls: false,
-                minHeight: 200.00,
-                minWidth: 200.00,
-                scale: 1.00,
-                scaleMobile: 1.00,
-                color: 0xd06402b, 
-                shininess: 36.00,
-                waveHeight: 22.50,
-                waveSpeed: 1.10,
-                zoom: 0.71
-            }); 
-        } 
-        
-        return () => { 
-            if (vantaEffect.current) { 
-                vantaEffect.current.destroy(); 
-                vantaEffect.current = null; 
-            }
-        }; 
-    }, []); 
-
+    // below is just the vantaJS library stuff nothing to much. 
+      const vantaRef = useRef(null);  // create a ref to the DOM element
+      const vantaEffect = useRef(null);
+    
+      useEffect(() => {
+        if (!vantaEffect.current && window.VANTA && window.VANTA.CLOUDS) {
+          vantaEffect.current = window.VANTA.CLOUDS({
+            el: vantaRef.current,
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.00,
+            minWidth: 200.00,
+            skyColor: 0x68b8d7,
+            cloudColor: 0xadc1de,
+            cloudShadowColor: 0x183550,
+            sunColor: 0xff9919,
+            sunGlareColor: 0xff6633,
+            sunlightColor: 0xff9933,
+            speed: 1.5
+          });
+        }
+    
+        return () => {
+          if (vantaEffect.current){ 
+            vantaEffect.current.destroy(); 
+            vantaEffect.current = null; 
+          }
+        };
+      }, []);
     return (
     <>
       <div style={{ position: "relative", height: "100vh", width: "100vw" }}>

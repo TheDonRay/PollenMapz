@@ -24,12 +24,12 @@ function Homepage(){ // this is our main react component.
         gyroControls: false,
         minHeight: 200.00,
         minWidth: 200.00,
-        skyColor: 0xd98127,
-        cloudColor: 0xd9d3d3,
-        cloudShadowColor: 0x1f2e57,
-        sunColor: 0xb9742c,
-        sunGlareColor: 0xd75d44,
-        sunlightColor: 0xd48241,
+        skyColor: 0x68b8d7,
+        cloudColor: 0xadc1de,
+        cloudShadowColor: 0x183550,
+        sunColor: 0xff9919,
+        sunGlareColor: 0xff6633,
+        sunlightColor: 0xff9933,
         speed: 1.5
       });
     }

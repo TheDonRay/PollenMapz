@@ -9,7 +9,7 @@ const ParkData = require('../Model/park.js'); // remember we are using the two d
 
 // note that i can also write it as a async function which idk if is recommended to switch it to? to handle better error handling using await keyword on the connection. just remember to invoke that function 
 // connect to the mongo db 
-mongo.connect('mongodb://localhost:27017/PollenMapz');  // need this to parse csv to json data. 
+mongo.connect('mongodb://localhost:27017/pollenmapz');  // need this to parse csv to json data. 
 
 
 // now i need to load and parse the csv 

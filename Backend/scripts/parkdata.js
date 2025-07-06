@@ -4,12 +4,12 @@ const mongo = require('mongoose');
 const csv = require('csvtojson');  
 // we need to call our data schema model since thats where we will be querying our data for when user enters location 
 const ParkData = require('../Model/park.js'); // remember we are using the two dots the .. means "go up one folder" 
-
+const {DB_URI} = require('../config/env.js');
 //This code is designed to convert a CSV file to JSON and then insert that data into your MongoDB database — specifically into a ParkData collection using Mongoose.
 
 // note that i can also write it as a async function which idk if is recommended to switch it to? to handle better error handling using await keyword on the connection. just remember to invoke that function 
 // connect to the mongo db 
-mongo.connect('mongodb://localhost:27017/pollenmapz');  // need this to parse csv to json data. 
+mongo.connect(DB_URI);  // need this to parse csv to json data. 
 
 
 // now i need to load and parse the csv 

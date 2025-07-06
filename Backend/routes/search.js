@@ -9,6 +9,7 @@ const Park = require("../Model/park.js"); // include the model of how the databa
 searchLocation.get('/search', async (req, res) => { // simple query to get the user location based of the location they put.  ,
     const getUserLocation = req.query.getUserLocation;   
     
+    // so the try and catch case logging the error works correctly. 
     try {   
         console.log("The Query reads the user entered this location:", getUserLocation);  
         console.log("Mongoose is using this collection:", Park.collection.name); 

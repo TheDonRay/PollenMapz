@@ -10,21 +10,28 @@ const {MAPBOX_SECRET_TOKEN} = require('../config/env.js');
 
 mapboxgl.accessToken = MAPBOX_SECRET_TOKEN;  
 
-// creating function for the map stuff 
-const Map = () => { 
-  const mapContainer = useRef(null); 
-  const map = useRef(null);  
-
-  useEffect(() => { 
-    if (map.current) return; // this basically initializes the map only once. 
-  }
-}
+// creating function for the map stuff / and the vanta js library stuff 
 
 function SearchLoc() {  
 
     // below is just the vantaJS library stuff nothing to much. 
       const vantaRef = useRef(null);  // create a ref to the DOM element
-      const vantaEffect = useRef(null);
+      const vantaEffect = useRef(null); 
+
+      // this is for the mapbox stuff: 
+      const mapContainer = useRef(null); 
+      const map = useRef(null);   
+
+      useEffect(() => { 
+        if (map.current) return; // this basically initializes the map only once.  
+
+        map.current = new mapboxgl.Map({ 
+          container: mapContainer.current, 
+          style: 'mapbox://styles/mapbox/streets-v12', // map style 
+          center: [-74.5, 40], // starting position 
+          zoom: 9, // starting zoom. 
+        }); 
+      }, []); 
     
       useEffect(() => {
         if (!vantaEffect.current && window.VANTA && window.VANTA.CLOUDS) {
@@ -66,12 +73,13 @@ function SearchLoc() {
             width: "100%",
             zIndex: 0,
           }}> 
-      <div> 
-        
-      </div>
+      <div 
+        ref={mapContainer} 
+        style={{width: '100%', height: '500px'}} 
+      />
         </div>
       </div>
-    </>
+    </> 
   );
 }
 

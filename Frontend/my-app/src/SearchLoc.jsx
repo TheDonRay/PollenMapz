@@ -1,14 +1,8 @@
 
 import "./styling/searchloc.css" // importing the css files   
 import React, { useEffect, useRef } from "react";
+//importing the mapbox secret token stuff: 
 
-// basically helps with changing between pages/components in React. Keeps the app fast and responsive. 
-
-
-// will include the google maps API 
-// this will have a different background compared to the front two pages 
-// this will also incorporate the google maps api key stuff 
-// want to keep the background consistent. 
 
 function SearchLoc() {  
 
@@ -43,8 +37,6 @@ function SearchLoc() {
         };
       }, []); 
 
-      // need to add another div here to put the search park 
-
     return (
     <>
       <div style={{ position: "relative", height: "100vh", width: "100vw" }}>
@@ -57,7 +49,10 @@ function SearchLoc() {
             height: "100%",
             width: "100%",
             zIndex: 0,
-          }}>
+          }}> 
+      <div> 
+        <h1>Create serach map div here</h1>
+      </div>
         </div>
       </div>
     </>

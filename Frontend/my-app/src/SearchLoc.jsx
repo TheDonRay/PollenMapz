@@ -6,9 +6,9 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import "./styling/searchloc.css" // importing the css files   
 import React, { useEffect, useRef } from "react";
 //importing the mapbox secret token stuff: 
-const {MAPBOX_SECRET_TOKEN} = require('../config/env.js');
 
-mapboxgl.accessToken = MAPBOX_SECRET_TOKEN;  
+
+mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_SECRET_TOKEN;  
 
 // creating function for the map stuff / and the vanta js library stuff 
 
@@ -28,8 +28,15 @@ function SearchLoc() {
         map.current = new mapboxgl.Map({ 
           container: mapContainer.current, 
           style: 'mapbox://styles/mapbox/streets-v12', // map style 
-          center: [-74.5, 40], // starting position 
-          zoom: 9, // starting zoom. 
+          center: [0, 20], // starting position 
+          zoom: 1.5, // starting zoom. 
+        });  
+
+        map.current.on('load', () => {  
+          if (map.current.getLayer('background')) { 
+            map.current.setPaintProperty('background', 'background-color', 'rgba(0,0,0,0)'); 
+          }
+          map.current.resize(); 
         }); 
       }, []); 
     
@@ -75,7 +82,17 @@ function SearchLoc() {
           }}> 
       <div 
         ref={mapContainer} 
-        style={{width: '100%', height: '500px'}} 
+        style={{ 
+            width: '100%',           // full width of parent container
+            maxWidth: '800px',       // a bit wider max width
+            height: '600px',         // taller height for a balanced card shape
+            margin: '20px auto',     // center horizontally with vertical spacing
+            backgroundColor: '#fff', // white background for card feel
+            borderRadius: '12px',
+            boxShadow: '0 6px 15px rgba(0, 0, 0, 0.1)',  // subtle shadow
+            border: '1px solid #ccc',
+            overflow: 'hidden',
+        }} 
       />
         </div>
       </div>

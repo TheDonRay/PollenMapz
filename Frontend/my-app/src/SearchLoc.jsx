@@ -41,7 +41,10 @@ function SearchLoc() {
             vantaEffect.current = null; 
           }
         };
-      }, []);
+      }, []); 
+
+      // need to add another div here to put the search park 
+
     return (
     <>
       <div style={{ position: "relative", height: "100vh", width: "100vw" }}>

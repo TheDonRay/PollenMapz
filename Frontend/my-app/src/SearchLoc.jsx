@@ -1,8 +1,24 @@
 
+// importing the mapbox stuff 
+import mapboxgl from 'mapbox-gl';  
+import 'mapbox-gl/dist/mapbox-gl.css'; 
+
 import "./styling/searchloc.css" // importing the css files   
 import React, { useEffect, useRef } from "react";
 //importing the mapbox secret token stuff: 
+const {MAPBOX_SECRET_TOKEN} = require('../config/env.js');
 
+mapboxgl.accessToken = MAPBOX_SECRET_TOKEN;  
+
+// creating function for the map stuff 
+const Map = () => { 
+  const mapContainer = useRef(null); 
+  const map = useRef(null);  
+
+  useEffect(() => { 
+    if (map.current) return; // this basically initializes the map only once. 
+  }
+}
 
 function SearchLoc() {  
 
@@ -51,7 +67,7 @@ function SearchLoc() {
             zIndex: 0,
           }}> 
       <div> 
-        <h1>Create serach map div here</h1>
+        
       </div>
         </div>
       </div>

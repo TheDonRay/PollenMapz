@@ -56,13 +56,12 @@ function About() { // main component function
             gyroControls: false,
             minHeight: 200.00,
             minWidth: 200.00,
-            skyColor: 0x68b8d7,
-            cloudColor: 0xadc1de,
-            cloudShadowColor: 0x183550,
-            sunColor: 0xff9919,
-            sunGlareColor: 0xff6633,
-            sunlightColor: 0xff9933,
-            speed: 1.5
+            skyColor: 0xdc8948,
+            cloudColor: 0xd7d7d7,
+            sunColor: 0xffd618,
+            sunGlareColor: 0xff9130,
+            sunlightColor: 0x965555,
+            speed: 1.40
           });
         }
     

@@ -22,7 +22,7 @@ function App() {
      <Routes> 
         <Route exact path = "/" element = {<Homepage />} />  
         <Route exact path = "/search" element = {<SearchLoc />} /> 
-        <Route exact path = "/about" element = {<About />} />  
+        <Route exact path = "/about" element = {<About />} />  {/* This is typically how we add new pages and routes to be able to switch  */}
      </Routes>  
     </Router> // the Router aka browser router wraps my app, enabling routing. 
   );

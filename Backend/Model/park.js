@@ -10,11 +10,26 @@ const parkLocSchema = new mongoose.Schema({
     address: String, //ADDRESS
     borough: String,   // from BOROUGH
     location: String, // from LOCATION (for now, keep as string since i dont have coordinates)
-    multipolygon: mongoose.Schema.Types.Mixed
+    multipolygon: mongoose.Schema.Types.Mixed,  
+
+
+    coordinates: { 
+        type: {
+            type: String, 
+            enum: ['Point'],  
+            required: true, 
+            default: 'Point',  
+        }, 
+        coordinates: { 
+            type: [Number], 
+            default: [0, 0], // here i changed it to 0,0 because it was not matching up with mongodb since mongodb its very strict on fields matching wit the model and the script. 
+        }, 
+    },
 }); 
 
 // export this schema as such  
-// remember again we are doing commonJS 
+// remember again we are doing commonJS  
+parkLocSchema.index({ coordinates: '2dsphere' }); 
 
 const ParkLocationModel = mongoose.model('ParkLocation', parkLocSchema); // note that when we query it going to be under ParkLocation but as plural and lower case so parklocations on mongoDB or mongosh
 module.exports = ParkLocationModel; 

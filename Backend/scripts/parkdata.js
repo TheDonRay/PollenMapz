@@ -19,15 +19,14 @@ csv()
         const transformingData = jsonArray
             .map((parkData, i) => {
                     return {
-                        name: parkData["NAME311"], // if you are wondering the reason why we use NAME311 like the csv columns is because when you read a CSV file using a parser like csvtojson it creates a javascript object for each row, using the column headers as keys 
+                        name: parkData["NAME311"], // if you are wondering the reason why we use NAME311 like the csv columns is because when you read a CSV file using a parser like csvtojson it creates a javascript object for each row, using the column headers as keys so you want to match everything up. 
                         address: parkData["ADDRESS"].toLowerCase(), // because address might be in lower case since the digits usually go first. 
                         borough: parkData["BOROUGH"], 
                         location: parkData["LOCATION"], 
-                        multipolygon: parkData["MULTIPOLYGON"]
+                        multipolygon: parkData["MULTIPOLYGON"], 
                     }; 
                 }) 
-            .filter(Boolean); // removes all null entries
-
+            .filter(Boolean); // removes all null entries  
         console.log(`Preparing to insert ${transformingData.length} documents...`); // added this line to test for bugs and see things that I may not see which i had before
         console.log(transformingData.slice(0, 2)); // preview first two did this for testing
 

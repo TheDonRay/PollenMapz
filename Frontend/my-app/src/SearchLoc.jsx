@@ -1,56 +1,99 @@
+import mapboxgl from 'mapbox-gl';
+import 'mapbox-gl/dist/mapbox-gl.css';
+import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
+import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 
-// importing the mapbox stuff 
-import mapboxgl from 'mapbox-gl';  
-import 'mapbox-gl/dist/mapbox-gl.css'; 
-
-import "./styling/searchloc.css" // importing the css files   
+import "./styling/searchloc.css";
 import React, { useEffect, useRef } from "react";
-//importing the mapbox secret token stuff: 
 
+mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_SECRET_TOKEN;
 
-mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_SECRET_TOKEN;  
+function SearchLoc() {
+  const mapContainer = useRef(null);
+  const map = useRef(null);
+  const geocoderContainer = useRef(null);
 
-// creating function for the map stuff / and the vanta js library stuff 
+  useEffect(() => {
+    if (map.current) return;
 
-function SearchLoc() {  
+    // Create map
+    map.current = new mapboxgl.Map({
+      container: mapContainer.current,
+      style: 'mapbox://styles/mapbox/streets-v12',
+      center: [0, 20],
+      zoom: 1.5,
+    });
 
-      // this is for the mapbox stuff: 
-      const mapContainer = useRef(null); 
-      const map = useRef(null);   
+    // Create geocoder // this is for the search bar feature
+    const geocoder = new MapboxGeocoder({
+      accessToken: mapboxgl.accessToken,
+      mapboxgl: mapboxgl,
+      placeholder: 'Enter a Park',
+      marker: false,
+    });
 
-      useEffect(() => { 
-        if (map.current) return; // this basically initializes the map only once.  
+    geocoderContainer.current.appendChild(geocoder.onAdd(map.current));
 
-        map.current = new mapboxgl.Map({ 
-          container: mapContainer.current, 
-          style: 'mapbox://styles/mapbox/streets-v12', // map style 
-          center: [0, 20], // starting position 
-          zoom: 1.5, // starting zoom. 
-        });  
+    // On search result:
+    geocoder.on('result', async (e) => {
+      const { center, place_name } = e.result;
+      console.log('User searched:', place_name);
+      console.log('Coordinates:', center);
 
-        map.current.on('load', () => {  
-          if (map.current.getLayer('background')) { 
-            map.current.setPaintProperty('background', 'background-color', 'rgba(0,0,0,0)'); 
-          }
-          map.current.resize(); 
-        }); 
-      }, []); 
+      try {
+        const response = await fetch(
+          `http://localhost:8000/api/v1/location/search?getUserLocation=${encodeURIComponent(place_name)}` // so here like the way the it gets the user entered location is from the placeholder and that is the place name that is added into the req query parameter. From there logic is handedin our backend. 
+        );
 
-    return (
+        const data = await response.json();
+        console.log('DB match result:', data);
+
+        // Add marker
+        new mapboxgl.Marker()
+          .setLngLat(center)
+          .setPopup(new mapboxgl.Popup().setText("Matched location"))
+          .addTo(map.current);
+
+      } catch (error) {
+        console.error('Error fetching match:', error);
+      }
+    });
+
+    // Resize and background fix
+    map.current.on('load', () => {
+      if (map.current.getLayer('background')) {
+        map.current.setPaintProperty('background', 'background-color', 'rgba(0,0,0,0)');
+      }
+      map.current.resize();
+    });
+  }, []);
+
+  return (
     <>
-      <div 
-        ref={mapContainer} 
-        style={{ 
-              position: 'fixed',     // or 'absolute' if preferred
-              top: 0,
-              left: 0,
-              width: '100vw',       // full viewport width
-              height: '100vh',      // full viewport height
-              zIndex: 1, 
-        }} 
+      <div
+        ref={mapContainer}
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100vw',
+          height: '100vh',
+          zIndex: 1,
+        }}
       />
-    </> 
+
+      <div
+        ref={geocoderContainer}
+        style={{
+          position: 'absolute',
+          top: '20px',
+          left: '20px',
+          zIndex: 10,
+          width: '300px',
+        }}
+      />
+    </>
   );
 }
 
-export default SearchLoc; 
+export default SearchLoc;

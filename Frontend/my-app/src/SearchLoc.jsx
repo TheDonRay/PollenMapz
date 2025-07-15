@@ -81,8 +81,8 @@ function SearchLoc() {
           zIndex: 1,
         }}
       />
-
-      <div
+      {/*the div below here adds the actual search bar stuff here*/}
+      <div 
         ref={geocoderContainer}
         style={{
           position: 'absolute',

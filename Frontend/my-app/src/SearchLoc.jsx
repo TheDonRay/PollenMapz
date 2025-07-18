@@ -6,6 +6,8 @@ import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 import "./styling/searchloc.css";
 import React, { useEffect, useRef } from "react";
 
+// google api key stuff here  
+const POLLEN_API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_POLLEN_KEY; 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_SECRET_TOKEN;
 
 function SearchLoc() {
@@ -52,7 +54,34 @@ function SearchLoc() {
         new mapboxgl.Marker()
           .setLngLat(center)
           .setPopup(new mapboxgl.Popup().setText("Matched location"))
-          .addTo(map.current);
+          .addTo(map.current); 
+
+                // Remove any existing pollen source/layer first
+        if (map.current.getLayer('pollen-layer')) {
+            map.current.removeLayer('pollen-layer');
+          }
+        if (map.current.getSource('pollen-heatmap')) {
+            map.current.removeSource('pollen-heatmap');
+          }
+
+          // Add Google Pollen raster tiles centered on the searched location
+        map.current.addSource('pollen-heatmap', {
+            type: 'raster',
+            tiles: [
+              `https://pollen.googleapis.com/v1/mapTypes/TREE_UPI/heatmapTiles/{z}/{x}/{y}?key=${POLLEN_API_KEY}`
+            ],
+            tileSize: 256,
+          });
+
+        map.current.addLayer({
+            id: 'pollen-layer',
+            type: 'raster',
+            source: 'pollen-heatmap',
+            paint: { 'raster-opacity': 0.7 }
+          });
+
+          // Zoom in on the searched area
+        map.current.flyTo({ center: center, zoom: 10 });
 
       } catch (error) {
         console.error('Error fetching match:', error);
@@ -63,11 +92,31 @@ function SearchLoc() {
     map.current.on('load', () => {
       if (map.current.getLayer('background')) {
         map.current.setPaintProperty('background', 'background-color', 'rgba(0,0,0,0)');
-      }
+      } 
+      console.log("Google API key loaded:", POLLEN_API_KEY);
+      // // Here im adding google pollen raster riles as a layer 
+      // map.current.addSource('pollen-heatmap', { 
+      //   type: 'raster', 
+      //   tiles: [ 
+      //     `https://pollen.googleapis.com/v1/mapTypes/TREE_UPI/heatmapTiles/{z}/{x}/{y}?key=${POLLEN_API_KEY}`
+      //   ], 
+      //   tileSize: 256
+      // }); 
+
+      // map.current.addLayer({ 
+      //   id: 'pollen-layer', 
+      //   type: 'raster', 
+      //   source: 'pollen-heatmap',  
+      //   paint: { 
+      //     'raster-opacity': 0.6
+      //   }
+      // }); 
+
       map.current.resize();
     });
   }, []);
 
+  // here is where it shows things into the frontend. 
   return (
     <>
       <div

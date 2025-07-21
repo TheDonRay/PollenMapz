@@ -12,5 +12,6 @@ module.exports = {
     PORT: process.env.PORT, 
     NODE_ENV: process.env.NODE_ENV,  
     DB_URI: process.env.DB_URI, // this is for the mongo DB 
-    MAPBOX_SECRET_TOKEN: process.env.MAPBOX_SECRET_TOKEN
+    MAPBOX_SECRET_TOKEN: process.env.MAPBOX_SECRET_TOKEN, 
+    GOOGLE_MAPS_API_POLLEN_KEY: process.env.GOOGLE_MAPS_API_POLLEN_KEY
 }; 

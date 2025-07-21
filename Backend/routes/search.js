@@ -2,7 +2,8 @@ const express = require("express");
 const searchLocation = express.Router(); // name of the route.   
 // import the model schema 
 const Park = require("../Model/park.js"); // include the model of how the database should look with the data there. 
-
+require('dotenv').config();  
+const axios = require("axios"); 
 // to get the user location 
 
 // need to write this in a try catch case using await. Then console log errors to see where its going wrong. 
@@ -19,9 +20,38 @@ searchLocation.get('/search', async (req, res) => { // simple query to get the u
         }
         const result = await Park.find({ name: new RegExp(getUserLocation, 'i')});  
         
-        res.json(result); 
+        if (!result || result.length === 0) { 
+            return res.status(404).json({ error: 'No matching park found. '}); 
+        } 
+        const matchedPark = result[0]; 
+        const { lat, lng } = matchedPark.coordinates; 
+
+        if (!lat || !lng) {
+            return res.status(500).json({ error: "Park is missing coordinates." });
+        }
+
+    // Step 2: Get pollen severity from Google Maps Pollen API
+        const pollenResponse = await axios.get("https://pollen.googleapis.com/v1/forecast:lookup", {
+        params: {
+            key: process.env.GOOGLE_MAPS_API_POLLEN_KEY,
+            "location.latitude": lat,
+            "location.longitude": lng,
+            days: 1,
+        },
+    });
+
+        const pollenData = pollenResponse.data.dailyInfo[0].pollenTypeInfo.map((type) => ({
+            type: type.type, // TREE, GRASS, WEED
+            severity: type.indexInfo.category, // Low, Moderate, High
+            index: type.indexInfo.value,
+        }));
+        res.json({ 
+            location: matchedPark.name, 
+            coordinates: matchedPark.coordinates, 
+            pollen: pollenData, 
+        }); 
     } 
-    catch (error) {     
+    catch (error) { // this error is hit so definetly need to revamp and re check the error on this route.      
         console.error('Server failed', error);  
         res.status(500).json({ error: "Internal Server Error. "}); // wriritng errors here 
     }

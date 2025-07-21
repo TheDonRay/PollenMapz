@@ -20,7 +20,7 @@ const connectiondb = require('./database/mongo.js'); // data base connection wit
 const Homepage = require('./routes/home.js'); 
 const locationSearch = require("./routes/search.js");   
 const aboutpage = require('./routes/about.js');  
-
+const upcomingFeatures = require('./routes/upcomingfeatures.js'); 
 // For database statements to handle querying of data etc and data model that holds my data model schema of how data looks in mongoose db 
 
 /*===========================================================================================================================================================================================*/  
@@ -30,7 +30,8 @@ const aboutpage = require('./routes/about.js');
 
 app.use('/api/v1/', Homepage); // this is mounting a router and its more in depth to it the idea is that 
 app.use('/api/v1/location', locationSearch); // mounting a router 
-app.use('/api/v1/aboutPage', aboutpage); 
+app.use('/api/v1/aboutPage', aboutpage);  
+app.use('/api/v1/upcoming', upcomingFeatures); 
 // key to understand that when mounting the routes we essentially need to call that same route in our fetch call in the frontend to show data to the frontend 
 
 // random testing a route on a updating post request for user will test using http pie 

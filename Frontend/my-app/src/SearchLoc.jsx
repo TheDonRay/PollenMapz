@@ -38,7 +38,7 @@ function SearchLoc() {
 
     // On search result:
     geocoder.on('result', async (e) => {
-      const { center, place_name } = e.result;
+      const { center, place_name } = e.result; 
       console.log('User searched:', place_name);
       console.log('Coordinates:', center);
 
@@ -48,37 +48,25 @@ function SearchLoc() {
         );
 
         const data = await response.json();
-        console.log('DB match result:', data);
+        console.log('response in frontend', data);
 
+        const pollenInfoHtml = (data.pollen || [])
+          .map(p => `
+            <div>
+              <strong>${p.type}</strong>: ${p.severity} (Index: ${p.index})
+            </div>
+          `)
+          .join('');
         // Add marker
         new mapboxgl.Marker()
           .setLngLat(center)
-          .setPopup(new mapboxgl.Popup().setText("Matched location"))
+          .setPopup(new mapboxgl.Popup().setHTML(`
+              <h2>${data.location || place_name}</h2>
+              <h3>Pollen Levels</h3>
+              ${pollenInfoHtml || '<p>No pollen data available.</p>'}
+            `)
+          )
           .addTo(map.current); 
-
-                // Remove any existing pollen source/layer first
-        if (map.current.getLayer('pollen-layer')) {
-            map.current.removeLayer('pollen-layer');
-          }
-        if (map.current.getSource('pollen-heatmap')) {
-            map.current.removeSource('pollen-heatmap');
-          }
-
-          // Add Google Pollen raster tiles centered on the searched location
-        map.current.addSource('pollen-heatmap', {
-            type: 'raster',
-            tiles: [
-              `https://pollen.googleapis.com/v1/mapTypes/TREE_UPI/heatmapTiles/{z}/{x}/{y}?key=${POLLEN_API_KEY}`
-            ],
-            tileSize: 256,
-          });
-
-        map.current.addLayer({
-            id: 'pollen-layer',
-            type: 'raster',
-            source: 'pollen-heatmap',
-            paint: { 'raster-opacity': 0.7 }
-          });
 
           // Zoom in on the searched area
         map.current.flyTo({ center: center, zoom: 10 });
@@ -94,24 +82,7 @@ function SearchLoc() {
         map.current.setPaintProperty('background', 'background-color', 'rgba(0,0,0,0)');
       } 
       console.log("Google API key loaded:", POLLEN_API_KEY);
-      // // Here im adding google pollen raster riles as a layer 
-      // map.current.addSource('pollen-heatmap', { 
-      //   type: 'raster', 
-      //   tiles: [ 
-      //     `https://pollen.googleapis.com/v1/mapTypes/TREE_UPI/heatmapTiles/{z}/{x}/{y}?key=${POLLEN_API_KEY}`
-      //   ], 
-      //   tileSize: 256
-      // }); 
-
-      // map.current.addLayer({ 
-      //   id: 'pollen-layer', 
-      //   type: 'raster', 
-      //   source: 'pollen-heatmap',  
-      //   paint: { 
-      //     'raster-opacity': 0.6
-      //   }
-      // }); 
-
+   
       map.current.resize();
     });
   }, []);

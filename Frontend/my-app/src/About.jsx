@@ -17,12 +17,18 @@ function About() { // main component function
       function buttonClick() { 
         // we actually call the path to where to go to for instance the about page which is a react component. 
         navigate('/search'); 
-      };  
+      };   
 
       // creating another function to handle the about creator click which is going to send me to linkedn 
       function aboutCreatorButton() { // here i just created a function to handle the second button click that leds you to my linkedn 
         window.location.href = "https://www.linkedin.com/in/rayatchowdhury2005/" // locatio href is typically used It is used in JavaScript to redirect the browser to a new URL. 
+      } 
+
+      // create another button feature where  
+      function upcomingFeaturesButton() { 
+        // route this to a seperate route that holds like a cool little page on updates and different things to expect. 
       }
+
     
     // need to add the useEffect and use state for fetching data from the backend 
     const [data, setAboutData] = useState(null);  // use state basically re renders the component on the page when data is updated. 

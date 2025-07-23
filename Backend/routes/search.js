@@ -9,6 +9,7 @@ const axios = require("axios");
 // need to write this in a try catch case using await. Then console log errors to see where its going wrong. 
 searchLocation.get('/search', async (req, res) => { // simple query to get the user location based of the location they put.  ,
     const getUserLocation = req.query.getUserLocation;  // in this line here 'm basically getting what the user enters that the frontend sent in the URL. 
+    // console.log(getUserLocation); // error checking here
     
     // so the try and catch case logging the error works correctly. 
     try {   
@@ -19,12 +20,17 @@ searchLocation.get('/search', async (req, res) => { // simple query to get the u
             return res.status(400).json({ error: "Missing 'getUserLocation' query"})
         }
         const result = await Park.find({ name: new RegExp(getUserLocation, 'i')});  
-        
+        // console.log(result); // error checking here 
+
         if (!result || result.length === 0) { 
             return res.status(404).json({ error: 'No matching park found. '}); 
         } 
-        const matchedPark = result[0]; 
-        const { lat, lng } = matchedPark.coordinates; 
+        const matchedPark = result[0];  // error is most likely here. 
+        const [lng, lat] = matchedPark.coordinates.coordinates;   
+
+        // console.log(matchedPark); 
+        // console.log(lat, lng); // error found here  
+        // coordinates are a property within itself 
 
         if (!lat || !lng) {
             return res.status(500).json({ error: "Park is missing coordinates." });
@@ -38,13 +44,19 @@ searchLocation.get('/search', async (req, res) => { // simple query to get the u
             "location.longitude": lng,
             days: 1,
         },
-    });
+    });     
 
-        const pollenData = pollenResponse.data.dailyInfo[0].pollenTypeInfo.map((type) => ({
-            type: type.type, // TREE, GRASS, WEED
-            severity: type.indexInfo.category, // Low, Moderate, High
-            index: type.indexInfo.value,
-        }));
+        //console.log("Full pollen API response:", JSON.stringify(pollenResponse.data, null, 2)); // for debug purposes 
+
+
+        const pollenData = pollenResponse.data.dailyInfo[0].pollenTypeInfo.filter(type => type.indexInfo).map(type => ({
+            type: type.code, // TREE, GRASS, WEED
+            severity: type.indexInfo?.category,// Low, Moderate, High
+            index: type.indexInfo?.value, 
+        }));  
+
+        console.log(pollenData) 
+
         res.json({ 
             location: matchedPark.name, 
             coordinates: matchedPark.coordinates, 
@@ -53,9 +65,11 @@ searchLocation.get('/search', async (req, res) => { // simple query to get the u
     } 
     catch (error) { // this error is hit so definetly need to revamp and re check the error on this route.      
         console.error('Server failed', error);  
-        res.status(500).json({ error: "Internal Server Error. "}); // wriritng errors here 
+        res.status(500).json({ error: "Internal Server Error. "}); // wriritng errors here  
+
     }
-    
+     
+   
     // here the user result will go where we need to find that data that was posted here but for now I will just console.log the item  
      
       // we call this line essentially querying the database.    

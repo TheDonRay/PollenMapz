@@ -6,7 +6,9 @@ upcoming.get('/features', (req, res) => {
     res.json({ 
         RoutePurpose: 'To show client/users progress and upcoming features for the app'
     }); 
-})
+}) 
+
+// add some more things to the route. 
 
 
 

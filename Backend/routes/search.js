@@ -18,8 +18,9 @@ searchLocation.get('/search', async (req, res) => { // simple query to get the u
 
         if (!getUserLocation){ 
             return res.status(400).json({ error: "Missing 'getUserLocation' query"})
-        }
-        const result = await Park.find({ name: new RegExp(getUserLocation, 'i')});  
+        } 
+        const Parkname = getUserLocation.split(',')[0].trim();
+        const result = await Park.find({ name: new RegExp(Parkname, 'i')});  
         // console.log(result); // error checking here 
 
         if (!result || result.length === 0) { 

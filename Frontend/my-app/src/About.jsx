@@ -26,7 +26,8 @@ function About() { // main component function
 
       // create another button feature where  
       function upcomingFeaturesButton() { 
-        // route this to a seperate route that holds like a cool little page on updates and different things to expect. 
+        // route this to a seperate route that holds like a cool little page on updates and different things to expect.  
+        navigate('/upcoming-features'); 
       }
 
     

@@ -9,7 +9,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 // All my componenets 
 import SearchLoc from './SearchLoc.jsx'; // this is a componenet. 
 import Homepage from './Homepage.jsx'; // this is a component 
-import About from './About.jsx'; // this is a componenet. 
+import About from './About.jsx'; // this is a componenet.  
+import Upcoming from './Upcoming.jsx'; 
 
 
 // routes - renders the first matching route only, which helps avoid rendering multiple components for similar paths 
@@ -22,7 +23,8 @@ function App() {
      <Routes> 
         <Route exact path = "/" element = {<Homepage />} />  
         <Route exact path = "/search" element = {<SearchLoc />} /> 
-        <Route exact path = "/about" element = {<About />} />  {/* This is typically how we add new pages and routes to be able to switch  */}
+        <Route exact path = "/about" element = {<About />} />  {/* This is typically how we add new pages and routes to be able to switch  */} m
+        <Route exact path = "/upcoming-features" element = {<Upcoming />} />
      </Routes>  
     </Router> // the Router aka browser router wraps my app, enabling routing. 
   );

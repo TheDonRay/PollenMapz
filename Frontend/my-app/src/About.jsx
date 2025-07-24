@@ -109,7 +109,7 @@ return (
           gap: "4rem",
           paddingLeft: "3.3vw",
           paddingRight: "10vw",
-          height: "75vh", // <-- move padding here instead
+          height: "75vh",
           color: "#06402B",
           fontWeight: "bold",
         }}
@@ -126,7 +126,7 @@ return (
               fontWeight: "bold",
               boxShadow: "0 4px 12px rgba(10, 97, 7, 0.84)",
             }}
-            className="buttonStyle" 
+            className="buttonStyle"
             onClick={buttonClick}
           >
             Discover Your Park!
@@ -145,16 +145,49 @@ return (
           }}
         >
           <h1>What Is PollenMapz?</h1>
-          <p style = {{ color: "black", fontSize: "17px", wordSpacing: "2px", lineHeight: "19px"}}>{data ? data : "Loading..."}</p> 
-          <button className = "creator-btn" onClick={aboutCreatorButton} style = {{boxShadow: "0 4px 12px rgba(10, 97, 7, 0.84)",  }}>About Creator</button> 
-          <button className = "upcoming-feature-btn" onClick={upcomingFeaturesButton} style = {{boxShadow: "0 4px 12px rgba(10, 97, 7, 0.84)", }}>Upcoming Features</button>
-         </div>
-      </div>
-    </div>
+          <p
+            style={{
+              color: "black",
+              fontSize: "17px",
+              wordSpacing: "2px",
+              lineHeight: "19px",
+            }}
+          >
+            {data ? data : "Loading..."}
+          </p>
+
+          {/* Buttons Row */}
+          <div
+            style={{
+              display: "flex",
+              gap: "12px",
+              marginTop: "1rem",
+            }}
+          >
+            <button
+              className="creator-btn"
+              onClick={aboutCreatorButton}
+              style={{
+                boxShadow: "0 4px 12px rgba(10, 97, 7, 0.84)",
+              }}
+            >
+              About Creator
+            </button>
+
+            <button
+              className="upcoming-feature-btn"
+              onClick={upcomingFeaturesButton}
+              style={{
+                boxShadow: "0 4px 12px rgba(10, 97, 7, 0.84)", color: '#06402B', fontWeight: "bold",
+              }}
+            >
+              Upcoming Features
+            </button>
+          </div>
+        </div> {/* <-- closes Card Section */}
+      </div> {/* <-- closes Parent Flex Container */}
+    </div> {/* <-- closes Full Page Container */}
   </>
-);
+)};
 
-
-}
-
-export default About; 
+export default About;

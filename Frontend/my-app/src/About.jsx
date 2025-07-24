@@ -160,7 +160,7 @@ return (
           <div
             style={{
               display: "flex",
-              gap: "12px",
+              gap: "9.4rem",
               marginTop: "1rem",
             }}
           >

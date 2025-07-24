@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import "./styling/upcomingfeatures.css";
+import "./styles/upcomingfeatures.css";
 
 function UpcomingFeatures() {
   const vantaRef = useRef(null);

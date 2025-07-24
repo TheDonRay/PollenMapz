@@ -3,7 +3,7 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 
-import "./styling/searchloc.css";
+import "./styles/searchloc.css";
 import React, { useEffect, useRef } from "react";
 
 // google api key stuff here  

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react"; // this i needed for the vantajs stuff 
-import "./styling/Homepage.css";  // css styling 
+import "./styles/Homepage.css";  // css styling 
 import { useNavigate } from "react-router-dom";  // needed these so i can navigate to the next page. 
-import "./styling/aboutPageButton.css"; // css style for the button 
+import "./styles/aboutPageButton.css"; // css style for the button 
 
 
 

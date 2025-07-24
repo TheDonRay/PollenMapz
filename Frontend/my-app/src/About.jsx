@@ -1,6 +1,6 @@
 import React from 'react'; 
-import './styling/aboutPage.css'  
-import './styling/abtcreatorbutton.css'
+import './styles/aboutPage.css'  
+import './styles/abtcreatorbutton.css'
 import { useEffect, useState, useRef } from 'react'; 
 import { useNavigate } from 'react-router-dom'; 
 
@@ -119,7 +119,7 @@ return (
           <h1 className="heading">About PollenMapz</h1>
           <button
             style={{
-              marginTop: -20,
+              marginTop: 20,
               marginBottom: "10px",
               fontSize: "16px",
               color: "#06402B",

@@ -146,8 +146,9 @@ return (
         >
           <h1>What Is PollenMapz?</h1>
           <p style = {{ color: "black", fontSize: "17px", wordSpacing: "2px", lineHeight: "19px"}}>{data ? data : "Loading..."}</p> 
-          <button className = "creator-btn" onClick={aboutCreatorButton} style = {{boxShadow: "0 4px 12px rgba(10, 97, 7, 0.84)",  }}>About Creator</button>
-        </div>
+          <button className = "creator-btn" onClick={aboutCreatorButton} style = {{boxShadow: "0 4px 12px rgba(10, 97, 7, 0.84)",  }}>About Creator</button> 
+          <button className = "upcoming-feature-btn" onClick={upcomingFeaturesButton} style = {{boxShadow: "0 4px 12px rgba(10, 97, 7, 0.84)", }}>Upcoming Features</button>
+         </div>
       </div>
     </div>
   </>

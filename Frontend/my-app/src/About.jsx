@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 // do want to include some other 3d features from the library i found 
 
 // another thing that I do want to mention is that to use the cells i just made sure to add the script in the index html file. 
+const backendUrl = process.env.REACT_APP_BACKEND_URL || "http://localhost:8000";  
 
 function About() { // main component function 
     // basically want it to import the backend data but first i need to import the background animation with vantaJS so lets try that out.  
@@ -39,7 +40,7 @@ function About() { // main component function
       // define variable to hold async function to get the data from the backend at the restful api 
       const fetchData = async () => { 
         try { 
-          const response = await fetch('http://localhost:8000/api/v1/aboutPage'); // follow the prefix + path syntax and fetch on the route you have 
+          const response = await fetch(`${backendUrl}/api/v1/aboutPage`); // follow the prefix + path syntax and fetch on the route you have 
           const result = await response.text(); // was displaying text data in the backend 
           setAboutData(result);  
         } 

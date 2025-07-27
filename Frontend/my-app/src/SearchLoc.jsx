@@ -6,7 +6,8 @@ import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 import "./styles/searchloc.css";
 import React, { useEffect, useRef } from "react";
 
-// google api key stuff here  
+// google api key stuff here   
+const backendUrl = process.env.REACT_APP_BACKEND_URL || "http://localhost:8000"; 
 const POLLEN_API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_POLLEN_KEY; 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_SECRET_TOKEN;
 
@@ -44,7 +45,7 @@ function SearchLoc() {
 
       try {
         const response = await fetch(
-          `http://localhost:8000/api/v1/location/search?getUserLocation=${encodeURIComponent(place_name)}` // so here like the way the it gets the user entered location is from the placeholder and that is the place name that is added into the req query parameter. From there logic is handedin our backend. 
+          `${backendUrl}/api/v1/location/search?getUserLocation=${encodeURIComponent(place_name)}` // so here like the way the it gets the user entered location is from the placeholder and that is the place name that is added into the req query parameter. From there logic is handedin our backend. 
         );
 
         const data = await response.json();
